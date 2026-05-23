@@ -30,7 +30,7 @@
   .page-title em{font-style:normal;color:var(--red)}
   .page-sub{font-size:15px;font-weight:300;color:var(--muted);margin-bottom:48px;line-height:1.6}
   .steps-bar{display:flex;align-items:center;margin-bottom:48px}
-  .step-pill{display:flex;align-items:center;gap:10px;padding:8px 18px;border:1px solid var(--border);border-radius:100px;font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);transition:all 0.3s;cursor:default}
+  .step-pill{display:flex;align-items:center;gap:10px;padding:8px 18px;border:1px solid var(--border);border-radius:100px;font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);transition:all 0.3s;cursor:pointer}
   .step-pill.active{border-color:var(--red-border);background:var(--red-dim);color:var(--text)}
   .step-pill.done{border-color:rgba(255,255,255,0.15);color:rgba(255,255,255,0.6)}
   .step-num{width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500}
@@ -101,6 +101,23 @@
   .fill-toggle-btn:hover:not(.active){background:rgba(255,255,255,0.04)}
   .fill-sub{margin-top:8px}
 
+
+
+  /* Advanced print settings */
+  .advanced-settings-card{grid-column:1/-1;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:2px}
+  .advanced-settings-top{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+  .advanced-settings-title{font-family:var(--mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--text);margin-bottom:5px}
+  .advanced-settings-sub{font-size:12px;color:var(--muted);line-height:1.55;max-width:560px}
+  .advanced-switch{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);cursor:pointer;user-select:none;white-space:nowrap}
+  .advanced-switch input{display:none}
+  .advanced-slider{width:46px;height:24px;border-radius:999px;background:rgba(255,255,255,0.09);border:1px solid var(--border);position:relative;transition:all 0.2s}
+  .advanced-slider::after{content:'';position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,0.45);transition:all 0.2s}
+  .advanced-switch input:checked + .advanced-slider{background:var(--red-dim);border-color:var(--red-border)}
+  .advanced-switch input:checked + .advanced-slider::after{left:25px;background:var(--red)}
+  .advanced-warning{display:none;margin-top:14px;padding:12px 14px;border-radius:8px;background:rgba(204,43,43,0.08);border:1px solid var(--red-border);font-size:12px;color:rgba(255,255,255,0.68);line-height:1.55}
+  .advanced-warning.visible{display:block}
+  .advanced-locked select{opacity:0.62;cursor:not-allowed}
+
   /* Price breakdown */
   .price-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:24px}
   .price-card-rows{padding:4px 0}
@@ -114,6 +131,8 @@
   .price-total-val{font-family:var(--display);font-size:38px;letter-spacing:0.05em}
   .price-total-val span{color:var(--red);font-size:24px}
   .price-min-note{font-size:11px;color:var(--muted);padding:0 20px 12px;font-family:var(--mono);letter-spacing:0.08em}
+  .estimate-warning{margin:0 20px 16px;padding:12px 14px;border:1px solid var(--red-border);border-radius:8px;background:var(--red-dim);color:rgba(255,255,255,0.82);font-size:12px;line-height:1.55;text-align:left}
+  .summary-warning{margin:16px 24px 20px;padding:12px 14px;border:1px solid var(--red-border);border-radius:8px;background:var(--red-dim);color:rgba(255,255,255,0.82);font-size:12px;line-height:1.55;text-align:left}
 
   /* Buttons */
   .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;border-radius:6px;font-family:var(--mono);font-size:12px;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;border:none;transition:all 0.2s;font-weight:500}
@@ -131,7 +150,7 @@
   .summary-rows{padding:8px 0}
   .summary-row{display:flex;justify-content:space-between;align-items:center;padding:10px 24px;font-size:14px}
   .summary-row+.summary-row{border-top:1px solid rgba(255,255,255,0.04)}
-  .summary-key{color:var(--muted);font-size:13px} .summary-val{font-weight:500}
+  .summary-key{color:var(--muted);font-size:13px;flex:0 0 auto}.summary-val{font-weight:500;text-align:right;max-width:70%;overflow-wrap:anywhere}
   .summary-total{border-top:1px solid var(--border);padding:16px 24px;display:flex;justify-content:space-between;align-items:center}
   .total-label{font-family:var(--mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted)}
   .total-val{font-family:var(--display);font-size:32px}
@@ -173,13 +192,41 @@
   @keyframes spin{to{transform:rotate(360deg)}}
   .sending-label{font-family:var(--mono);font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted)}
 
+
+
+  /* Language popup */
+  .lang-popup{display:none;position:fixed;inset:0;background:rgba(13,13,15,0.78);backdrop-filter:blur(10px);z-index:998;align-items:center;justify-content:center;padding:24px}
+  .lang-popup.visible{display:flex}
+  .lang-card{width:min(440px,100%);background:var(--bg2);border:1px solid var(--red-border);border-radius:18px;padding:34px 28px;text-align:center;box-shadow:0 24px 80px rgba(0,0,0,0.45)}
+  .lang-kicker{font-family:var(--mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--red);margin-bottom:10px}
+  .lang-title{font-family:var(--display);font-size:42px;letter-spacing:0.05em;line-height:1;margin-bottom:10px}
+  .lang-sub{font-size:14px;line-height:1.55;color:var(--muted);margin-bottom:24px}
+  .lang-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .lang-btn{padding:15px 16px;border-radius:10px;border:1px solid var(--border);background:var(--bg3);color:var(--text);font-family:var(--mono);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;transition:all 0.2s}
+  .lang-btn:hover{border-color:var(--red-border);background:var(--red-dim)}
+  .lang-btn.primary{background:var(--red);border-color:var(--red);color:#fff}
+  .nav-language-btn{background:transparent;border:1px solid var(--border);border-radius:999px;color:var(--muted);font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:8px 12px;cursor:pointer;margin-left:16px}
+  .nav-language-btn:hover{border-color:var(--red-border);color:var(--text);background:var(--red-dim)}
+
   @media(max-width:600px){
     nav{padding:14px 20px} .nav-logo{width:38px;height:38px}
     main{padding:36px 16px 60px} .page-title{font-size:44px}
     .config-grid{grid-template-columns:1fr}
     .steps-bar{gap:4px} .step-pill{padding:7px 12px;font-size:10px} .step-connector{max-width:16px}
     .contact-links{flex-direction:column;align-items:center}
+    .lang-actions{grid-template-columns:1fr}
   }
+
+  /* Color picker swatches */
+  .color-picker-wrap { display: flex; flex-wrap: wrap; gap: 8px; padding: 10px; background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; }
+  .color-swatch { width: 32px; height: 32px; border-radius: 6px; cursor: pointer; border: 2px solid transparent; transition: all 0.15s; position: relative; flex-shrink: 0; }
+  .color-swatch:hover { transform: scale(1.12); }
+  .color-swatch.selected { border-color: #fff; box-shadow: 0 0 0 2px var(--red); }
+  .color-swatch[data-color="clear"] { background: linear-gradient(135deg, #fff 40%, #cce8ff 100%); border: 2px solid rgba(255,255,255,0.25); }
+  .color-swatch[data-color="clear"]::after { display: none; }
+  .color-swatch-row { display: flex; flex-wrap: wrap; gap: 8px; width: 100%; }
+  .color-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
+  .selected-color-name { font-family: var(--mono); font-size: 11px; color: var(--text); margin-top: 8px; letter-spacing: 0.08em; }
 </style>
 </head>
 <body>
@@ -187,6 +234,18 @@
 <div class="sending-overlay" id="sendingOverlay">
   <div class="sending-spinner"></div>
   <div class="sending-label">Sending your order...</div>
+</div>
+
+<div class="lang-popup visible" id="languagePopup" aria-modal="true" role="dialog">
+  <div class="lang-card">
+    <div class="lang-kicker">AXONAS3D</div>
+    <div class="lang-title">Choose language</div>
+    <div class="lang-sub">Choose how you want to view the quote page.<br>Elige cómo quieres ver la página de cotización.</div>
+    <div class="lang-actions">
+      <button class="lang-btn primary" type="button" onclick="setLanguage('en', true)">English</button>
+      <button class="lang-btn" type="button" onclick="setLanguage('es', true)">Español</button>
+    </div>
+  </div>
 </div>
 
 <nav>
@@ -197,7 +256,10 @@
       <div class="nav-sub">Manufacturing</div>
     </div>
   </div>
-  <div class="nav-tag">// Precision 3D Manufacturing</div>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div class="nav-tag">// Precision 3D Manufacturing</div>
+    <button class="nav-language-btn" type="button" onclick="openLanguagePopup()" id="navLanguageBtn">EN / ES</button>
+  </div>
 </nav>
 
 <main>
@@ -205,13 +267,13 @@
   <p class="page-sub">Upload your STL or OBJ file — we calculate the estimated weight directly from your model and give you a real price.</p>
 
   <div class="steps-bar">
-    <div class="step-pill active" id="spill-1"><span class="step-num">1</span> Upload</div>
+    <div class="step-pill active" id="spill-1" onclick="navigateToStep(1)" title="Go to Upload"><span class="step-num">1</span> Upload</div>
     <div class="step-connector"></div>
-    <div class="step-pill" id="spill-2"><span class="step-num">2</span> Configure</div>
+    <div class="step-pill" id="spill-2" onclick="navigateToStep(2)" title="Go to Configure"><span class="step-num">2</span> Configure</div>
     <div class="step-connector"></div>
-    <div class="step-pill" id="spill-3"><span class="step-num">3</span> Confirm</div>
+    <div class="step-pill" id="spill-3" onclick="navigateToStep(3)" title="Go to Confirm"><span class="step-num">3</span> Confirm</div>
     <div class="step-connector"></div>
-    <div class="step-pill" id="spill-4"><span class="step-num">4</span> Done</div>
+    <div class="step-pill" id="spill-4" title="Completed after submission"><span class="step-num">4</span> Done</div>
   </div>
 
   <!-- Panel 1: Upload -->
@@ -301,65 +363,106 @@
 
       <div class="field-group" id="fdm-material-group">
         <label>Filament material</label>
-        <select id="fdm-material" onchange="updatePrice()">
-          <option value="pla">PLA</option>
+        <select id="fdm-material" onchange="onFdmMaterialChange()">
+          <option value="pla" selected>PLA</option>
           <option value="petg">PETG</option>
           <option value="abs">ABS</option>
-          <option value="tpu95">TPU 95A (semi-rigid)</option>
-          <option value="tpu85">TPU 85A (soft)</option>
-          <option value="asa">ASA (outdoor)</option>
+          <option value="asa">ASA</option>
+          <option value="tpu95">TPU 95A (Flexible)</option>
+          <option value="tpu85">TPU 85A (Soft)</option>
         </select>
+      </div>
+      <div class="field-group" id="fdm-color-group">
+        <label>Color</label>
+        <div class="color-picker-wrap" id="fdm-color-picker"></div>
+        <input type="hidden" id="fdm-color" value="black">
       </div>
 
       <div class="field-group" id="msla-material-group" style="display:none">
         <label>Resin material</label>
-        <select id="msla-material" onchange="updatePrice()">
-          <option value="resin_std">Standard Resin</option>
+        <select id="msla-material" onchange="onMslaMaterialChange()">
+          <option value="resin_std" selected>Standard Resin</option>
           <option value="resin_abs">ABS-like Resin</option>
           <option value="resin_flex">Flexible Resin</option>
-          <option value="resin_tough">Tough Resin</option>
-          <option value="resin_clear">Transparent Resin</option>
         </select>
       </div>
+      <div class="field-group" id="msla-color-group" style="display:none">
+        <label>Color</label>
+        <div class="color-picker-wrap" id="msla-color-picker"></div>
+        <input type="hidden" id="msla-color" value="black">
+      </div>
 
-      <div class="field-group" id="fdm-resolution-group">
+      <div class="advanced-settings-card" id="advancedSettingsCard">
+        <div class="advanced-settings-top">
+          <div>
+            <div class="advanced-settings-title" id="advancedSettingsTitle">Advanced print settings</div>
+            <div class="advanced-settings-sub" id="advancedSettingsSub">Default: 0.20 mm layer height and 15% infill. Turn this on only if you want to manually adjust print detail, strength, time, and price.</div>
+          </div>
+          <label class="advanced-switch">
+            <input type="checkbox" id="advancedModeToggle" onchange="setAdvancedMode(this.checked)">
+            <span class="advanced-slider"></span>
+            <span id="advancedModeLabel">Advanced off</span>
+          </label>
+        </div>
+        <div class="advanced-warning" id="advancedWarning">Only change layer height or infill if you have previous 3D printing experience. Lower layer height improves surface quality but increases machine time and price. Higher infill increases strength, weight, and price.</div>
+      </div>
+
+      <div class="field-group advanced-locked" id="fdm-resolution-group">
         <label>Layer height</label>
-        <select id="fdm-resolution" onchange="updatePrice()">
-          <option value="0.28">0.28 mm — Draft (fast)</option>
+        <select id="fdm-resolution" onchange="updatePrice()" disabled>
+          <option value="0.32">0.32 mm — Rapid draft</option>
+          <option value="0.28">0.28 mm — Draft</option>
           <option value="0.20" selected>0.20 mm — Standard</option>
+          <option value="0.16">0.16 mm — Balanced fine</option>
           <option value="0.12">0.12 mm — Fine</option>
           <option value="0.08">0.08 mm — Ultra fine</option>
         </select>
       </div>
 
-      <div class="field-group" id="msla-resolution-group" style="display:none">
+      <div class="advanced-settings-card" id="mslaAdvancedSettingsCard" style="display:none">
+        <div class="advanced-settings-top">
+          <div>
+            <div class="advanced-settings-title">Advanced resin settings</div>
+            <div class="advanced-settings-sub" id="mslaAdvancedSettingsSub">Default: 0.05 mm layer height and 2.5 mm wall thickness. Only change if you know what you need.</div>
+          </div>
+          <label class="advanced-switch">
+            <input type="checkbox" id="mslaAdvancedModeToggle" onchange="setMslaAdvancedMode(this.checked)">
+            <span class="advanced-slider"></span>
+            <span id="mslaAdvancedModeLabel">Advanced off</span>
+          </label>
+        </div>
+        <div class="advanced-warning" id="mslaAdvancedWarning">Lower layer height gives sharper detail but significantly increases print time and price. Wall thickness affects resin usage and structural integrity.</div>
+      </div>
+
+      <div class="field-group advanced-locked" id="msla-resolution-group" style="display:none">
         <label>Layer height</label>
-        <select id="msla-resolution" onchange="updatePrice()">
+        <select id="msla-resolution" onchange="updatePrice()" disabled>
           <option value="0.15">0.15 mm — Draft</option>
-          <option value="0.08" selected>0.08 mm — Standard</option>
-          <option value="0.05">0.05 mm — Fine</option>
+          <option value="0.08">0.08 mm — Standard</option>
+          <option value="0.05" selected>0.05 mm — Fine</option>
           <option value="0.03">0.03 mm — Ultra</option>
           <option value="0.01">0.01 mm — Extreme detail</option>
         </select>
       </div>
 
-      <div class="field-group" id="fdm-infill-group">
+      <div class="field-group advanced-locked" id="fdm-infill-group">
         <label>Infill density</label>
-        <select id="fdm-infill" onchange="updatePrice()">
-          <option value="0.15">15% — Lightweight</option>
-          <option value="0.30" selected>30% — Standard</option>
+        <select id="fdm-infill" onchange="updatePrice()" disabled>
+          <option value="0.08">8% — Decorative</option>
+          <option value="0.15" selected>15% — Standard lightweight</option>
+          <option value="0.30">30% — Functional</option>
           <option value="0.50">50% — Durable</option>
-          <option value="0.75">75% — Heavy duty</option>
+          <option value="0.60">60% — Heavy duty</option>
           <option value="1.00">100% — Solid</option>
         </select>
       </div>
 
-      <div class="field-group" id="msla-fill-group" style="display:none">
+      <div class="field-group advanced-locked" id="msla-fill-group" style="display:none">
         <label>Fill strategy</label>
         <div class="fill-toggle">
-          <button class="fill-toggle-btn active" id="btn-infill" onclick="setResinFill('infill')">Infill</button>
-          <button class="fill-toggle-btn" id="btn-wall" onclick="setResinFill('wall')">Wall</button>
-          <button class="fill-toggle-btn" id="btn-solid" onclick="setResinFill('solid')">Solid</button>
+          <button class="fill-toggle-btn" id="btn-infill" onclick="setResinFill('infill')" disabled>Infill</button>
+          <button class="fill-toggle-btn active" id="btn-wall" onclick="setResinFill('wall')" disabled>Wall</button>
+          <button class="fill-toggle-btn" id="btn-solid" onclick="setResinFill('solid')" disabled>Solid</button>
         </div>
         <div class="fill-sub" id="infill-sub">
           <select id="msla-infill" onchange="updatePrice()">
@@ -375,7 +478,7 @@
             <option value="5.0">5.0 mm wall</option>
             <option value="4.0">4.0 mm wall</option>
             <option value="3.0" selected>3.0 mm wall</option>
-            <option value="2.5">2.5 mm wall</option>
+            <option value="2.5" selected>2.5 mm wall</option>
             <option value="2.0">2.0 mm wall</option>
             <option value="1.5">1.5 mm wall (thin shell)</option>
           </select>
@@ -419,6 +522,7 @@
         <span class="price-total-val"><span>$</span><span id="priceDisplay">—</span></span>
       </div>
       <div class="price-min-note" id="priceMinNote" style="display:none">* $5.00 minimum order applied</div>
+      <div class="estimate-warning" id="estimateWarningPrice">This is an automatic estimate, not a final price. Axonas3D will review your file and submitted details before providing the final quote.</div>
     </div>
 
     <div class="btn-row">
@@ -439,6 +543,7 @@
         <span class="total-label">Total (incl. 8.25% tax)</span>
         <span class="total-val" id="summaryTotal">—</span>
       </div>
+      <div class="summary-warning" id="estimateWarningSummary">This is an automatic estimate, not a final price. Axonas3D will review your file and submitted details before providing the final quote.</div>
     </div>
     <div class="config-grid">
       <div class="field-group">
@@ -452,15 +557,6 @@
       <div class="field-group full">
         <label>Phone / WhatsApp (optional)</label>
         <input type="text" id="contactPhone" placeholder="+1 (555) 000-0000">
-      </div>
-      <div class="field-group full">
-        <label>Reference images — optional, up to 4</label>
-        <div class="img-upload-zone" id="imgUploadZone">
-          <input type="file" id="imgInput" accept="image/png,image/jpeg,image/webp,image/gif" multiple>
-          <div class="img-upload-label">Click or drag images here</div>
-          <div class="img-upload-sub">PNG · JPG · WEBP · max 4 images</div>
-        </div>
-        <div class="img-previews" id="imgPreviews"></div>
       </div>
     </div>
     <div class="btn-row">
@@ -479,9 +575,8 @@
         <div class="attach-box-title">⚠ Required action — you must send us your file</div>
         <div class="attach-box-text">
           A confirmation email should be sent to your inbox from Axonas3D.<br><br>
-          <strong>If the CAD file does not attach through the form, click “Email Axonas” and attach your STL, OBJ, STEP, or 3MF file manually.</strong><br>
-          We cannot start your order or finalize the quote without the 3D file. Please include your Quote ID in the email.<br><br>
-          If you also have reference images, attach those in the same email.
+          <strong>If the CAD file does not attach through the form, click “Email Axonas3D” and attach your STL, OBJ, STEP, or 3MF file manually.</strong><br>
+          We cannot start your order or finalize the quote without the 3D file. Please include your Quote ID in the email.
         </div>
       </div>
       <p class="success-msg" style="font-size:13px">Or reach us directly:</p>
@@ -496,7 +591,7 @@
         </a>
         <a class="contact-link sms" id="emailLink" href="mailto:axonas3d@gmail.com" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-          Email Axonas
+          Email Axonas3D
         </a>
       </div>
       <p class="success-msg" style="margin-top:28px;font-family:var(--mono);font-size:11px;color:rgba(255,255,255,0.15);letter-spacing:0.1em">FDM · MSLA · Prototyping · Jewelry · Manufacturing</p>
@@ -507,14 +602,41 @@
 <script>
 const EMAILJS_PUBLIC_KEY = '5bb_qdbP00bCTw9yv';
 const EMAILJS_SERVICE_ID = 'service_dq577to';
-const EMAILJS_OWNER_TEMPLATE_ID = 'template_duume4c';
-const EMAILJS_CUSTOMER_TEMPLATE_ID = 'template_1wr8cpb';
+const EMAILJS_TEMPLATE_IDS = {
+  en: 'template_kpyy83k',
+  es: 'template_1wr8cpb'
+};
 const OWNER_EMAIL = 'axonas3d@gmail.com';
 emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+function getEmailTemplateId() {
+  return currentLanguage === 'es' ? EMAILJS_TEMPLATE_IDS.es : EMAILJS_TEMPLATE_IDS.en;
+}
 const WHATSAPP_NUMBER = '19152806996';
 const SMS_NUMBER = '+19152806996';
-const TAX_RATE = 0.0825;
-const MIN_ORDER = 5.00;
+// Currency/pricing settings.
+// Base material/machine/post-processing prices are stored in USD.
+// Spanish mode converts those estimates to MXN for display and email.
+// Change this rate whenever you want to update the peso conversion.
+const USD_TO_MXN = 17.00;
+
+function getCurrencySettings() {
+  if (currentLanguage === 'es') {
+    return { code: 'MXN', symbol: '$', rate: USD_TO_MXN, taxRate: 0.08, minOrder: 85.00 };
+  }
+  return { code: 'USD', symbol: '$', rate: 1, taxRate: 0.0825, minOrder: 5.00 };
+}
+
+function formatMoney(amount, settings) {
+  const c = settings || getCurrencySettings();
+  const suffix = c.code === 'MXN' ? ' MXN' : '';
+  return c.symbol + Number(amount || 0).toFixed(2) + suffix;
+}
+
+function formatRatePerHour(rateUsdPerHour) {
+  const c = getCurrencySettings();
+  return formatMoney(rateUsdPerHour * c.rate, c) + '/hr';
+}
 
 // Machine time pricing. This is a rough quoting estimate, not a slicer replacement.
 // Fine layer heights increase machine time because the print has more layers.
@@ -525,8 +647,10 @@ const MACHINE_RATE_PER_HOUR = {
 
 const LAYER_TIME_MULT = {
   fdm: {
+    '0.32': 0.58,
     '0.28': 0.75,
     '0.20': 1.00,
+    '0.16': 1.25,
     '0.12': 1.55,
     '0.08': 2.25
   },
@@ -541,23 +665,21 @@ const LAYER_TIME_MULT = {
 
 // Price per gram (material cost / 1000 * markup 2x)
 const PRICE_PER_GRAM = {
-  pla:   0.020 * 2,   // $0.040/g
-  petg:  0.020 * 2,
-  abs:   0.025 * 2,
-  tpu95: 0.025 * 2,
-  tpu85: 0.050 * 2,
-  asa:   0.025 * 2,
-  resin_std:   0.022 * 2,
-  resin_abs:   0.025 * 2,
-  resin_flex:  0.050 * 2,
-  resin_tough: 0.030 * 2,
-  resin_clear: 0.022 * 2
+  pla:        0.020,   // $20/kg
+  petg:       0.020,   // $20/kg
+  abs:        0.022,   // $22/kg
+  asa:        0.025,   // $25/kg
+  tpu95:      0.030,   // $30/kg
+  tpu85:      0.050,   // $50/kg
+  resin_std:  0.025,   // $25/kg
+  resin_abs:  0.030,   // $30/kg
+  resin_flex: 0.040,   // $40/kg
 };
 
 // Density g/cm3
 const DENSITY = {
-  pla:1.24, petg:1.27, abs:1.05, tpu95:1.21, tpu85:1.20, asa:1.07,
-  resin_std:1.10, resin_abs:1.12, resin_flex:1.08, resin_tough:1.15, resin_clear:1.10
+  pla:1.24, petg:1.27, abs:1.05, asa:1.07, tpu95:1.21, tpu85:1.20,
+  resin_std:1.10, resin_abs:1.12, resin_flex:1.08,
 };
 
 
@@ -566,8 +688,10 @@ const DENSITY = {
 // This multiplier adds a modest allowance for line overlap, extra detail, supports, and process waste.
 const LAYER_MASS_MULT = {
   fdm: {
+    '0.32': 0.95,  // rapid draft: least overlap/detail
     '0.28': 0.98,  // draft: slightly less overlap/detail
     '0.20': 1.00,  // standard baseline
+    '0.16': 1.02,  // balanced fine: small extra allowance
     '0.12': 1.03,  // fine: small extra allowance
     '0.08': 1.06   // ultra fine: highest allowance
   },
@@ -581,67 +705,279 @@ const LAYER_MASS_MULT = {
 };
 
 const MAT_NAMES = {
-  pla:'PLA', petg:'PETG', abs:'ABS', tpu95:'TPU 95A', tpu85:'TPU 85A', asa:'ASA',
+  pla:'PLA', petg:'PETG', abs:'ABS', asa:'ASA', tpu95:'TPU 95A', tpu85:'TPU 85A',
   resin_std:'Standard Resin', resin_abs:'ABS-like Resin', resin_flex:'Flexible Resin',
-  resin_tough:'Tough Resin', resin_clear:'Transparent Resin'
 };
 
 const POST_NAMES = {'0':'None','6':'Sanding & smoothing','14':'Sanding + painting','3':'Support removal'};
 
+
+let currentLanguage = localStorage.getItem('axonasLanguage') || 'en';
+
+const TEXT = {
+  en: {
+    navTag: '// Precision 3D Manufacturing', pageTitle: 'Get your <em>quote</em><br>instantly.',
+    pageSub: 'Upload your STL or OBJ file — we calculate the estimated weight directly from your model and give you a real price.',
+    step1: 'Upload', step2: 'Configure', step3: 'Confirm', step4: 'Done',
+    dropFile: 'Drop your STL or OBJ file here', fileTypes: 'STL & OBJ supported · Max 100 MB',
+    otherFormatBtn: 'STEP · STP · IGES · 3MF · Other — Contact us directly',
+    otherTitle: 'Send us your file',
+    otherSub: "STEP, IGES, and 3MF files need to be reviewed manually. Fill in your details below and send us an email with your file attached — we'll get back to you with a quote within 24 hours.",
+    yourName: 'Your name', emailAddress: 'Email address', phone: 'Phone / WhatsApp (optional)', fileFormat: 'File format', projectDesc: 'Project description',
+    sendQuoteRequest: 'Send quote request →', configurePrint: 'Configure print →', printTech: 'Print technology', filamentMaterial: 'Filament material', resinMaterial: 'Resin material', layerHeight: 'Layer height', infillDensity: 'Infill density', fillStrategy: 'Fill strategy',
+    infill: 'Infill', wall: 'Wall', solid: 'Solid', quantity: 'Quantity', postProcessing: 'Post-processing', notes: 'Special notes (optional)', totalInclTax: 'Total (incl. tax)', minimumOrder: '* $5.00 minimum order applied', back: '← Back', reviewOrder: 'Review order →', orderSummary: 'Order summary', confirmOrder: 'Confirm order →',
+    successTitle: 'Order received.', successMsg: 'The Axonas3D team will review your quote and reach out within <strong>24 hours</strong> to confirm details and payment.', attachTitle: 'Important: CAD file',
+    attachText: 'A confirmation email should be sent to your inbox from Axonas3D.<br><br><strong>If the CAD file does not attach through the form, click “Email Axonas3D” and attach your STL, OBJ, STEP, or 3MF file manually.</strong><br>We cannot start your order or finalize the quote without the 3D file. Please include your Quote ID in the email.',
+    directReach: 'Or reach us directly:', emailAxonas3D: 'Email Axonas3D', sendSms: 'Send SMS', sending: 'Sending your order...',
+    estWeight: 'Est. weight', layerMassAdj: 'Layer-height adj.', weightFactor: 'weight factor', materialCost: 'Material cost', estMachineTime: 'Est. machine time', layerTimeAdj: 'Layer-time adj.', timeFactor: 'time factor', machineTimeCost: 'Machine time cost', minimumOrderRow: 'Minimum order', tax: 'Tax (8.25%)',
+    file: 'File', technology: 'Technology', material: 'Material', layerWeightFactor: 'Layer weight factor', layerTimeFactor: 'Layer time factor', fill: 'Fill', subtotal: 'Subtotal', none: 'None', sanding: 'Sanding & smoothing', painting: 'Sanding + painting', supportRemoval: 'Support removal', units: 'unit(s)', layer: 'layer',
+    alertNameEmail: 'Please enter your name and email.', alertPrice: 'Price could not be calculated. Please go back and check your file.', alertSendFail: 'The quote could not be sent. Check the console and your EmailJS template/service IDs. You can also email axonas3d@gmail.com directly.',
+    otherSendFail: 'The request could not be sent. Check the console and your EmailJS template/service IDs. You can also email axonas3d@gmail.com directly.', languageName: 'English', advancedSettings: 'Advanced print settings', advancedSub: 'Default: 0.20 mm layer height and 15% infill. Turn this on only if you want to manually adjust print detail, strength, time, and price.', advancedOff: 'Advanced off', advancedOn: 'Advanced on', advancedWarning: 'Only change layer height or infill if you have previous 3D printing experience. Lower layer height improves surface quality but increases machine time and price. Higher infill increases strength, weight, and price.', notesPlaceholder: 'Color preference, tolerance requirements, assembly needs...', otherNotesPlaceholder: 'Describe your part — material preference, quantity, intended use, dimensions if known...', estimateDisclaimer: 'This is an automatic estimate, not a final price. Axonas3D will review your file and submitted details before providing the final quote.'
+  },
+  es: {
+    navTag: '// Manufactura 3D de precisión', pageTitle: 'Obtén tu <em>cotización</em><br>al instante.',
+    pageSub: 'Sube tu archivo STL u OBJ — calculamos el peso estimado directamente desde tu modelo y te damos un precio real.',
+    step1: 'Subir', step2: 'Configurar', step3: 'Confirmar', step4: 'Listo',
+    dropFile: 'Suelta tu archivo STL u OBJ aquí', fileTypes: 'STL y OBJ compatibles · Máx. 100 MB',
+    otherFormatBtn: 'STEP · STP · IGES · 3MF · Otro — Contáctanos directamente',
+    otherTitle: 'Envíanos tu archivo',
+    otherSub: 'Los archivos STEP, IGES y 3MF necesitan revisión manual. Llena tus datos abajo y envíanos un correo con tu archivo adjunto — te responderemos con una cotización dentro de 24 horas.',
+    yourName: 'Tu nombre', emailAddress: 'Correo electrónico', phone: 'Teléfono / WhatsApp (opcional)', fileFormat: 'Formato de archivo', projectDesc: 'Descripción del proyecto',
+    sendQuoteRequest: 'Enviar solicitud →', configurePrint: 'Configurar impresión →', printTech: 'Tecnología de impresión', filamentMaterial: 'Material de filamento', resinMaterial: 'Material de resina', layerHeight: 'Altura de capa', infillDensity: 'Densidad de relleno', fillStrategy: 'Estrategia de relleno',
+    infill: 'Relleno', wall: 'Pared', solid: 'Sólido', quantity: 'Cantidad', postProcessing: 'Post-procesado', notes: 'Notas especiales (opcional)', totalInclTax: 'Total (con impuesto)', minimumOrder: '* Se aplicó orden mínima de $85.00 MXN', back: '← Regresar', reviewOrder: 'Revisar orden →', orderSummary: 'Resumen de orden', confirmOrder: 'Confirmar orden →',
+    successTitle: 'Orden recibida.', successMsg: 'El equipo de Axonas3D revisará tu cotización y se comunicará contigo dentro de <strong>24 horas</strong> para confirmar detalles y pago.', attachTitle: 'Importante: archivo CAD',
+    attachText: 'Debería llegar una confirmación a tu correo de Axonas3D.<br><br><strong>Si el archivo CAD no se adjunta por el formulario, haz clic en “Email Axonas3D” y adjunta manualmente tu archivo STL, OBJ, STEP o 3MF.</strong><br>No podemos iniciar tu orden ni finalizar la cotización sin el archivo 3D. Incluye tu Quote ID en el correo.',
+    directReach: 'O contáctanos directamente:', emailAxonas3D: 'Email Axonas3D', sendSms: 'Enviar SMS', sending: 'Enviando tu orden...',
+    estWeight: 'Peso estimado', layerMassAdj: 'Ajuste por capa', weightFactor: 'factor de peso', materialCost: 'Costo de material', estMachineTime: 'Tiempo de máquina estimado', layerTimeAdj: 'Ajuste de tiempo por capa', timeFactor: 'factor de tiempo', machineTimeCost: 'Costo de tiempo de máquina', minimumOrderRow: 'Orden mínima', tax: 'Impuesto (8%)',
+    file: 'Archivo', technology: 'Tecnología', material: 'Material', layerWeightFactor: 'Factor de peso por capa', layerTimeFactor: 'Factor de tiempo por capa', fill: 'Relleno', subtotal: 'Subtotal', none: 'Ninguno', sanding: 'Lijado y suavizado', painting: 'Lijado + pintura', supportRemoval: 'Retiro de soportes', units: 'unidad(es)', layer: 'capa',
+    alertNameEmail: 'Por favor ingresa tu nombre y correo electrónico.', alertPrice: 'No se pudo calcular el precio. Regresa y revisa tu archivo.', alertSendFail: 'No se pudo enviar la cotización. Revisa la consola y tus IDs de EmailJS. También puedes escribir directamente a axonas3d@gmail.com.',
+    otherSendFail: 'No se pudo enviar la solicitud. Revisa la consola y tus IDs de EmailJS. También puedes escribir directamente a axonas3d@gmail.com.', languageName: 'Spanish', advancedSettings: 'Configuración avanzada de impresión', advancedSub: 'Predeterminado: altura de capa de 0.20 mm y 15% de relleno. Activa esto solo si quieres ajustar manualmente detalle, resistencia, tiempo y precio.', advancedOff: 'Avanzado apagado', advancedOn: 'Avanzado encendido', advancedWarning: 'Cambia la altura de capa o el relleno solo si tienes experiencia previa con impresión 3D. Menor altura de capa mejora la superficie pero aumenta tiempo de máquina y precio. Más relleno aumenta resistencia, peso y precio.', notesPlaceholder: 'Preferencia de color, tolerancias, necesidades de ensamble...', otherNotesPlaceholder: 'Describe tu pieza — material preferido, cantidad, uso previsto, dimensiones si las conoces...'
+  }
+};
+
+const POST_NAMES_BY_LANG = {
+  en: {'0':'None','6':'Sanding & smoothing','14':'Sanding + painting','3':'Support removal'},
+  es: {'0':'Ninguno','6':'Lijado y suavizado','14':'Lijado + pintura','3':'Retiro de soportes'}
+};
+
+function t(key) {
+  return (TEXT[currentLanguage] && TEXT[currentLanguage][key]) || TEXT.en[key] || key;
+}
+
+function openLanguagePopup() {
+  const popup = document.getElementById('languagePopup');
+  if (popup) popup.classList.add('visible');
+}
+
+function closeLanguagePopup() {
+  const popup = document.getElementById('languagePopup');
+  if (popup) popup.classList.remove('visible');
+}
+
+function setLanguage(lang, closePopup) {
+  currentLanguage = lang === 'es' ? 'es' : 'en';
+  localStorage.setItem('axonasLanguage', currentLanguage);
+  applyLanguage();
+  updatePrice();
+  if (closePopup) closeLanguagePopup();
+}
+
+function setText(selector, key, html=false) {
+  const el = document.querySelector(selector);
+  if (!el) return;
+  if (html) el.innerHTML = t(key);
+  else el.textContent = t(key);
+}
+
+function setOptionText(selectId, value, text) {
+  const opt = document.querySelector(`#${selectId} option[value="${value}"]`);
+  if (opt) opt.textContent = text;
+}
+
+function setPlaceholder(id, key) {
+  const el = document.getElementById(id);
+  if (el) el.placeholder = t(key);
+}
+
+function setLabelTexts() {
+  // IMPORTANT: do not target the Advanced Mode switch label.
+  // Replacing that label's text destroys the checkbox/slider HTML and makes the toggle unusable.
+  const labels = document.querySelectorAll('label:not(.advanced-switch)');
+  const keys = [
+    'yourName','emailAddress','phone','fileFormat','projectDesc',
+    'printTech','filamentMaterial','resinMaterial',
+    'layerHeight','layerHeight','infillDensity','fillStrategy',
+    'quantity','postProcessing','notes',
+    'yourName','emailAddress','phone'
+  ];
+  labels.forEach((label, i) => { if (keys[i]) label.textContent = t(keys[i]); });
+}
+
+function applyLanguage() {
+  document.documentElement.lang = currentLanguage;
+  setText('.nav-tag','navTag'); setText('.page-title','pageTitle',true); setText('.page-sub','pageSub');
+  document.getElementById('spill-1').innerHTML = '<span class="step-num">1</span> ' + t('step1');
+  document.getElementById('spill-2').innerHTML = '<span class="step-num">2</span> ' + t('step2');
+  document.getElementById('spill-3').innerHTML = '<span class="step-num">3</span> ' + t('step3');
+  document.getElementById('spill-4').innerHTML = '<span class="step-num">4</span> ' + t('step4');
+  setText('.upload-title','dropFile'); setText('.upload-sub','fileTypes'); setText('.other-format-btn','otherFormatBtn');
+  setText('.other-format-title','otherTitle'); setText('.other-format-sub','otherSub');
+  setLabelTexts();
+  const btns = document.querySelectorAll('button');
+  btns.forEach(btn => {
+    const txt = btn.textContent.trim();
+    if (txt.includes('Send quote request') || txt.includes('Enviar solicitud')) btn.textContent = t('sendQuoteRequest');
+    if (txt.includes('Configure print') || txt.includes('Configurar impresión')) btn.textContent = t('configurePrint');
+    if (txt.includes('Review order') || txt.includes('Revisar orden')) btn.textContent = t('reviewOrder');
+    if (txt.includes('Confirm order') || txt.includes('Confirmar orden')) btn.textContent = t('confirmOrder');
+    if (txt === '← Back' || txt === '← Regresar') btn.textContent = t('back');
+  });
+  const fillBtns = { 'btn-infill':'infill', 'btn-wall':'wall', 'btn-solid':'solid' };
+  Object.entries(fillBtns).forEach(([id,key]) => { const el=document.getElementById(id); if(el) el.textContent=t(key); });
+  setText('.price-total-label','totalInclTax'); setText('#priceMinNote','minimumOrder'); setText('.summary-head-title','orderSummary'); setText('#estimateWarningPrice','estimateDisclaimer'); setText('#estimateWarningSummary','estimateDisclaimer'); setText('.success-title','successTitle'); setText('#panel-4 .success-msg','successMsg',true);
+  setText('.attach-box-title','attachTitle'); setText('.attach-box-text','attachText',true);
+  const direct = document.querySelector('#panel-4 .success-msg[style*="font-size:13px"]'); if (direct) direct.textContent = t('directReach');
+  const sms = document.getElementById('smsLink'); if (sms) sms.childNodes[sms.childNodes.length-1].textContent = ' ' + t('sendSms');
+  const em = document.getElementById('emailLink'); if (em) em.childNodes[em.childNodes.length-1].textContent = ' ' + t('emailAxonas3D');
+  const sending = document.querySelector('.sending-label'); if (sending) sending.textContent = t('sending');
+  const navBtn = document.getElementById('navLanguageBtn'); if (navBtn) navBtn.textContent = currentLanguage === 'es' ? 'ES / EN' : 'EN / ES';
+  setOptionText('post','0', t('none')); setOptionText('post','6', t('sanding')); setOptionText('post','14', t('painting')); setOptionText('post','3', t('supportRemoval'));
+  setText('#advancedSettingsTitle','advancedSettings');
+  setText('#advancedSettingsSub','advancedSub');
+  setText('#advancedWarning','advancedWarning');
+  updateAdvancedModeUI();
+  setPlaceholder('notes', 'notesPlaceholder');
+  setPlaceholder('otherNotes', 'otherNotesPlaceholder');
+}
+
 let uploadedFile = null;
-let resinFillMode = 'infill';
+let resinFillMode = 'wall'; // default for MSLA is wall thickness
+let advancedMode = false;
+const DEFAULT_FDM_LAYER  = '0.20';
+const DEFAULT_FDM_INFILL = '0.15';
+let mslaAdvancedMode = false;
+const DEFAULT_MSLA_LAYER = '0.05';
+const DEFAULT_MSLA_WALL  = '2.5';
 let threeScene = null;
 let meshVolumeCm3 = null;
 let bboxVolumeCm3 = null;
 let triCount = 0;
 let bboxDims = null;
-let refImages = []; // {name, dataUrl} array, max 4
-
-// ── Reference image handling ──────────────────────────────────
-function handleRefImages(files) {
-  const remaining = 4 - refImages.length;
-  const toAdd = Array.from(files).slice(0, remaining);
-  toAdd.forEach(file => {
-    if (!file.type.startsWith('image/')) return;
-    const reader = new FileReader();
-    reader.onload = e => {
-      refImages.push({ name: file.name, dataUrl: e.target.result });
-      renderImgPreviews();
-    };
-    reader.readAsDataURL(file);
-  });
-}
-
-function renderImgPreviews() {
-  const wrap = document.getElementById('imgPreviews');
-  wrap.innerHTML = refImages.map((img, i) => `
-    <div class="img-thumb">
-      <img src="${img.dataUrl}" alt="${img.name}">
-      <button class="img-thumb-remove" onclick="removeRefImage(${i})">✕</button>
-    </div>
-  `).join('');
-  // Hide upload zone if 4 reached
-  document.getElementById('imgUploadZone').style.opacity = refImages.length >= 4 ? '0.4' : '1';
-  document.getElementById('imgUploadZone').style.pointerEvents = refImages.length >= 4 ? 'none' : '';
-}
-
-function removeRefImage(idx) {
-  refImages.splice(idx, 1);
-  renderImgPreviews();
-}
-
-function buildImagesHtml() {
-  if (!refImages.length) return '';
-  return refImages.map((img, i) =>
-    `<p><strong>Reference image ${i+1}: ${img.name}</strong></p><img src="${img.dataUrl}" style="max-width:500px;border-radius:6px;margin:8px 0;" alt="ref ${i+1}"><br>`
-  ).join('');
-}
-
 function getTech() { return document.getElementById('tech').value; }
-function getMat()  {
+// ── Color data & picker ──────────────────────────────────────
+const COLOR_MAP = {
+  red:    { hex: '#cc2b2b', label: 'Red' },
+  orange: { hex: '#e8620a', label: 'Orange' },
+  yellow: { hex: '#e8c40a', label: 'Yellow' },
+  green:  { hex: '#1f9e3c', label: 'Green' },
+  blue:   { hex: '#1a5fcf', label: 'Blue' },
+  purple: { hex: '#7c3fcf', label: 'Purple' },
+  pink:   { hex: '#e0589a', label: 'Pink' },
+  black:  { hex: '#1a1a1a', label: 'Black' },
+  white:  { hex: '#f0f0f0', label: 'White' },
+  grey:   { hex: '#7a7a7a', label: 'Grey' },
+  clear:  { hex: null,      label: 'Transparent' },
+};
+
+const FDM_COLORS = {
+  pla:   ['red','orange','yellow','green','blue','purple','black','white'],
+  petg:  ['red','orange','yellow','green','blue','purple','black','white','clear'],
+  abs:   ['red','blue','black','white'],
+  asa:   ['black','white'],
+  tpu95: ['blue','green','black','white','pink','clear'],
+  tpu85: ['black','white'],
+};
+
+const MSLA_COLORS = {
+  resin_std:  ['black','grey','white','clear'],
+  resin_abs:  ['black','grey','white','clear'],
+  resin_flex: ['black','grey','white','clear'],
+};
+
+function buildColorPicker(containerId, hiddenId, colors, selectedColor) {
+  const wrap = document.getElementById(containerId);
+  if (!wrap) return;
+  wrap.innerHTML = '';
+
+  colors.forEach(colorKey => {
+    const def = COLOR_MAP[colorKey];
+    const swatch = document.createElement('div');
+    swatch.className = 'color-swatch' + (colorKey === selectedColor ? ' selected' : '');
+    swatch.dataset.color = colorKey;
+    swatch.title = def.label;
+
+    if (colorKey === 'clear') {
+      swatch.style.cssText = 'background:linear-gradient(135deg,#e8f4ff 0%,#fff 50%,#c8e8ff 100%);border:2px dashed rgba(255,255,255,0.4);';
+      // draw diagonal line pattern to signal transparency
+      swatch.innerHTML = '<svg width="28" height="28" style="position:absolute;inset:0;margin:auto" viewBox="0 0 28 28"><line x1="4" y1="24" x2="24" y2="4" stroke="rgba(100,180,255,0.6)" stroke-width="2"/><line x1="4" y1="16" x2="16" y2="4" stroke="rgba(100,180,255,0.3)" stroke-width="1.5"/></svg>';
+    } else {
+      swatch.style.background = def.hex;
+      if (colorKey === 'white') swatch.style.border = '2px solid rgba(255,255,255,0.2)';
+    }
+
+    swatch.addEventListener('click', () => {
+      wrap.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('selected'));
+      swatch.classList.add('selected');
+      // Set hidden input value synchronously BEFORE calling updatePrice
+      const hiddenInput = document.getElementById(hiddenId);
+      hiddenInput.value = colorKey;
+      // update label
+      const label = wrap.parentElement.querySelector('.selected-color-name');
+      if (label) label.textContent = def.label;
+      // Force a reflow to ensure DOM is updated, then recalc
+      hiddenInput.dispatchEvent(new Event('change'));
+      updatePrice();
+    });
+
+    wrap.appendChild(swatch);
+  });
+
+  // selected color name label
+  const existing = wrap.parentElement.querySelector('.selected-color-name');
+  if (existing) existing.remove();
+  const nameEl = document.createElement('div');
+  nameEl.className = 'selected-color-name';
+  const selDef = COLOR_MAP[selectedColor] || COLOR_MAP['black'];
+  nameEl.textContent = selDef.label;
+  wrap.parentElement.appendChild(nameEl);
+}
+
+function onFdmMaterialChange() {
+  const mat = document.getElementById('fdm-material').value;
+  const colors = FDM_COLORS[mat] || ['black'];
+  const defaultColor = colors.includes('black') ? 'black' : colors[0];
+  document.getElementById('fdm-color').value = defaultColor;
+  buildColorPicker('fdm-color-picker', 'fdm-color', colors, defaultColor);
+  updatePrice();
+}
+
+function onMslaMaterialChange() {
+  const mat = document.getElementById('msla-material').value;
+  const colors = MSLA_COLORS[mat] || ['black'];
+  const defaultColor = colors.includes('black') ? 'black' : colors[0];
+  document.getElementById('msla-color').value = defaultColor;
+  buildColorPicker('msla-color-picker', 'msla-color', colors, defaultColor);
+  updatePrice();
+}
+
+function initColorPickers() {
+  onFdmMaterialChange();
+  // MSLA starts hidden but pre-init its picker too
+  onMslaMaterialChange();
+}
+
+// getMat returns base material key — now reads from separate material select
+function getMat() {
   return getTech() === 'fdm'
     ? document.getElementById('fdm-material').value
     : document.getElementById('msla-material').value;
+}
+// Returns true if the selected color is transparent (triggers +$5 on resin)
+function isTransparentColor() {
+  // Only resin (MSLA) transparent incurs a surcharge. FDM transparent (PETG, TPU95) = no extra.
+  if (getTech() !== 'msla') return false;
+  const colorEl = document.getElementById('msla-color');
+  return colorEl ? colorEl.value === 'clear' : false;
 }
 
 // ── Volume & mass estimation ─────────────────────────────────
@@ -670,29 +1006,7 @@ function getLayerTimeMultiplier() {
   return (LAYER_TIME_MULT[tech] && LAYER_TIME_MULT[tech][layerId]) || 1;
 }
 
-function getEstimatedMachineHours() {
-  const tech = getTech();
-  const printedVol = getPrintedVolumeCm3();
-  if (printedVol === null) return null;
-
-  if (tech === 'fdm') {
-    // Baseline: about 0.045 hr/cm3 at 0.20 mm, then scaled by layer height.
-    // Setup/load/unload time is intentionally small so tiny parts still show some machine time.
-    const setupHours = 0.20;
-    return setupHours + (printedVol * 0.045 * getLayerTimeMultiplier());
-  }
-
-  // MSLA time depends mostly on number of layers, so Z height and layer height matter strongly.
-  if (bboxDims) {
-    const layerHeightMm = parseFloat(document.getElementById('msla-resolution').value) || 0.08;
-    const layers = Math.max(1, bboxDims.z / layerHeightMm);
-    const secondsPerLayerAtStandard = 8;
-    const setupHours = 0.35;
-    return setupHours + ((layers * secondsPerLayerAtStandard) / 3600);
-  }
-
-  return 0.35 + (printedVol * 0.04 * getLayerTimeMultiplier());
-}
+// getEstimatedMachineHours() — defined below in the 3D analysis engine block (FIX 3)
 
 // Calculate printed volume considering infill/wall/solid.
 // FDM no longer uses bounding-box empty space as printable interior.
@@ -733,7 +1047,9 @@ function getEstimatedGrams() {
   if (vol === null) return null;
   const mat = getMat();
   const layerMassMultiplier = getLayerMassMultiplier();
-  return vol * (DENSITY[mat] || 1.1) * layerMassMultiplier;
+  // 1.5x: supports, purge, brim + geometric underestimate (validated vs Orca Slicer)
+  const SUPPORT_WASTE_FACTOR = 1.5;
+  return vol * (DENSITY[mat] || 1.1) * layerMassMultiplier * SUPPORT_WASTE_FACTOR;
 }
 
 // ── Price calculation ────────────────────────────────────────
@@ -741,59 +1057,81 @@ function calcPrice() {
   const grams = getEstimatedGrams();
   const machineHours = getEstimatedMachineHours();
   if (grams === null || machineHours === null) return null;
+
+  const currency = getCurrencySettings();
   const tech  = getTech();
   const mat   = getMat();
   const qty   = parseInt(document.getElementById('qty').value) || 1;
-  const post  = parseFloat(document.getElementById('post').value) || 0;
-  const ppg   = PRICE_PER_GRAM[mat] || 0.04;
-  const machineRate = MACHINE_RATE_PER_HOUR[tech] || 3.00;
-  const materialCost = grams * ppg * qty;
-  const machineCost = machineHours * machineRate * qty;
-  const subtotalBeforeMin = materialCost + machineCost + post;
-  const subtotal = Math.max(MIN_ORDER, subtotalBeforeMin);
-  const tax  = subtotal * TAX_RATE;
+
+  // These three base costs are calculated in USD first.
+  const postUsd  = parseFloat(document.getElementById('post').value) || 0;
+  // Transparent resin adds $5/kg to the material price (opaque pigment vs clear process cost)
+  const basePpgUsd  = PRICE_PER_GRAM[mat] || 0.04;
+  const ppgUsd      = basePpgUsd + (isTransparentColor() ? 0.005 : 0); // $5/kg = $0.005/g
+  const machineRateUsd = MACHINE_RATE_PER_HOUR[tech] || 3.00;
+  const materialCostUsd = grams * ppgUsd * qty;
+  const machineCostUsd = machineHours * machineRateUsd * qty;
+  const subtotalBeforeMinUsd = materialCostUsd + machineCostUsd + postUsd;
+
+  // Convert to the selected language/currency before applying minimum order and tax.
+  // English: USD, 8.25% tax, $5 minimum.
+  // Spanish: MXN, 8% tax, $85 minimum.
+  const materialCost = materialCostUsd * currency.rate;
+  const machineCost = machineCostUsd * currency.rate;
+  const post = postUsd * currency.rate;
+  const subtotalBeforeMin = subtotalBeforeMinUsd * currency.rate;
+  const subtotal = Math.max(currency.minOrder, subtotalBeforeMin);
+  const tax  = subtotal * currency.taxRate;
   const total = subtotal + tax;
+
   return {
     grams,
     materialCost,
     machineHours,
-    machineRate,
+    machineRate: machineRateUsd * currency.rate,
     machineCost,
     post,
+    subtotalBeforeMin,
     subtotal,
     tax,
     total,
     qty,
-    ppg,
+    ppg: ppgUsd * currency.rate,
+    minOrder: currency.minOrder,
+    taxRate: currency.taxRate,
+    currencyCode: currency.code,
+    currencySymbol: currency.symbol,
     layerMassMultiplier: getLayerMassMultiplier(),
     layerTimeMultiplier: getLayerTimeMultiplier()
   };
 }
 
 function updatePrice() {
+  updateStatMass();
   const p = calcPrice();
   if (!p) { document.getElementById('priceDisplay').textContent = '—'; return; }
 
   const rowsEl = document.getElementById('priceRows');
   const minNote = document.getElementById('priceMinNote');
-  const wasMin = p.materialCost + p.machineCost + p.post < MIN_ORDER;
+  const wasMin = p.subtotalBeforeMin < p.minOrder;
   minNote.style.display = wasMin ? 'block' : 'none';
 
   rowsEl.innerHTML = [
-    ['Est. weight', p.grams.toFixed(1) + 'g × ' + p.qty + (p.qty>1?' units':'')],
-    Math.abs(p.layerMassMultiplier - 1) > 0.001 ? ['Layer-height adj.', (p.layerMassMultiplier * 100).toFixed(0) + '% weight factor'] : null,
-    ['Material cost', '$' + (p.materialCost).toFixed(2)],
-    ['Est. machine time', p.machineHours.toFixed(2) + ' hr × ' + p.qty + (p.qty>1?' units':'')],
-    Math.abs(p.layerTimeMultiplier - 1) > 0.001 ? ['Layer-time adj.', (p.layerTimeMultiplier * 100).toFixed(0) + '% time factor'] : null,
-    ['Machine time cost', '$' + p.machineCost.toFixed(2)],
-    p.post > 0 ? ['Post-processing', '+$' + p.post.toFixed(2)] : null,
-    wasMin ? ['Minimum order', '$' + MIN_ORDER.toFixed(2)] : null,
-    ['Tax (8.25%)', '+$' + p.tax.toFixed(2)],
+    [t('estWeight'), p.grams.toFixed(1) + 'g × ' + p.qty + (p.qty>1?' ' + t('units'):'')],
+    Math.abs(p.layerMassMultiplier - 1) > 0.001 ? [t('layerMassAdj'), (p.layerMassMultiplier * 100).toFixed(0) + '% ' + t('weightFactor')] : null,
+    [t('materialCost'), formatMoney(p.materialCost)],
+    [t('estMachineTime'), p.machineHours.toFixed(2) + ' hr × ' + p.qty + (p.qty>1?' ' + t('units'):'')],
+    Math.abs(p.layerTimeMultiplier - 1) > 0.001 ? [t('layerTimeAdj'), (p.layerTimeMultiplier * 100).toFixed(0) + '% ' + t('timeFactor')] : null,
+    [t('machineTimeCost'), formatMoney(p.machineCost)],
+
+    p.post > 0 ? [t('postProcessing'), '+' + formatMoney(p.post)] : null,
+    wasMin ? [t('minimumOrderRow'), formatMoney(p.minOrder)] : null,
+    [t('tax'), '+' + formatMoney(p.tax)],
   ].filter(Boolean).map(([l,v]) =>
     `<div class="price-row"><span class="price-row-label">${l}</span><span class="price-row-val">${v}</span></div>`
   ).join('');
 
-  document.getElementById('priceDisplay').textContent = p.total.toFixed(2);
+  document.getElementById('priceDisplay').textContent = p.total.toFixed(2) + (p.currencyCode === 'MXN' ? ' MXN' : '');
   buildSummary(p);
 }
 
@@ -805,51 +1143,136 @@ function buildSummary(p) {
   const fdmRes = document.getElementById('fdm-resolution').value;
   const mslaRes = document.getElementById('msla-resolution').value;
   const resLabel = tech === 'fdm'
-    ? fdmRes + 'mm layer'
-    : mslaRes + 'mm layer';
+    ? fdmRes + 'mm ' + t('layer')
+    : mslaRes + 'mm ' + t('layer');
   let fillLabel = '';
   if (tech === 'fdm') {
-    fillLabel = (parseFloat(document.getElementById('fdm-infill').value)*100).toFixed(0) + '% infill';
+    fillLabel = (parseFloat(document.getElementById('fdm-infill').value)*100).toFixed(0) + '% ' + t('infill').toLowerCase();
   } else {
-    if (resinFillMode === 'infill') fillLabel = (parseFloat(document.getElementById('msla-infill').value)*100).toFixed(0) + '% infill';
-    else if (resinFillMode === 'wall') fillLabel = document.getElementById('msla-wall').value + 'mm wall';
-    else fillLabel = 'Solid';
+    if (resinFillMode === 'infill') fillLabel = (parseFloat(document.getElementById('msla-infill').value)*100).toFixed(0) + '% ' + t('infill').toLowerCase();
+    else if (resinFillMode === 'wall') fillLabel = document.getElementById('msla-wall').value + 'mm ' + t('wall').toLowerCase();
+    else fillLabel = t('solid');
   }
   const rows = [
-    ['File', document.getElementById('fileName').textContent || '—'],
-    ['Technology', tech === 'fdm' ? 'FDM' : 'MSLA Resin'],
-    ['Material', MAT_NAMES[mat] || mat],
-    ['Layer height', resLabel],
-    ['Layer weight factor', (p.layerMassMultiplier * 100).toFixed(0) + '%'],
-    ['Layer time factor', (p.layerTimeMultiplier * 100).toFixed(0) + '%'],
-    ['Fill', fillLabel],
-    ['Est. weight', p.grams.toFixed(1) + 'g × ' + p.qty + ' unit(s)'],
-    ['Est. machine time', p.machineHours.toFixed(2) + ' hr × ' + p.qty + ' unit(s)'],
-    ['Machine time cost', '$' + p.machineCost.toFixed(2)],
-    ['Post-processing', POST_NAMES[document.getElementById('post').value]||'None'],
-    ['Subtotal', '$' + p.subtotal.toFixed(2)],
-    ['Tax (8.25%)', '$' + p.tax.toFixed(2)],
+    [t('file'), document.getElementById('fileName').textContent || '—'],
+    [t('technology'), tech === 'fdm' ? 'FDM' : 'MSLA Resin'],
+    [t('material'), MAT_NAMES[mat] || mat],
+    [t('layerHeight'), resLabel],
+    [t('layerWeightFactor'), (p.layerMassMultiplier * 100).toFixed(0) + '%'],
+    [t('layerTimeFactor'), (p.layerTimeMultiplier * 100).toFixed(0) + '%'],
+    [t('fill'), fillLabel],
+    [t('estWeight'), p.grams.toFixed(1) + 'g × ' + p.qty + ' ' + t('units')],
+    [t('estMachineTime'), p.machineHours.toFixed(2) + ' hr × ' + p.qty + ' ' + t('units')],
+    [t('machineTimeCost'), formatMoney(p.machineCost)],
+    [t('postProcessing'), POST_NAMES_BY_LANG[currentLanguage][document.getElementById('post').value] || t('none')],
+    [t('subtotal'), formatMoney(p.subtotal)],
+    [t('tax'), formatMoney(p.tax)],
   ];
   const notes = document.getElementById('notes').value;
-  if (notes) rows.push(['Notes', notes]);
+  if (notes) rows.push([t('notes'), notes]);
   document.getElementById('summaryRows').innerHTML = rows.map(([k,v]) =>
     `<div class="summary-row"><span class="summary-key">${k}</span><span class="summary-val">${v}</span></div>`
   ).join('');
-  document.getElementById('summaryTotal').textContent = '$' + p.total.toFixed(2);
+  document.getElementById('summaryTotal').textContent = formatMoney(p.total);
+}
+
+function updateAdvancedModeUI() {
+  const toggle = document.getElementById('advancedModeToggle');
+  const label = document.getElementById('advancedModeLabel');
+  const warning = document.getElementById('advancedWarning');
+  const fdmRes = document.getElementById('fdm-resolution');
+  const fdmInfill = document.getElementById('fdm-infill');
+  const resGroup = document.getElementById('fdm-resolution-group');
+  const infillGroup = document.getElementById('fdm-infill-group');
+  if (toggle) toggle.checked = advancedMode;
+  if (label) label.textContent = advancedMode ? t('advancedOn') : t('advancedOff');
+  if (warning) warning.classList.toggle('visible', advancedMode);
+  if (fdmRes) fdmRes.disabled = !advancedMode;
+  if (fdmInfill) fdmInfill.disabled = !advancedMode;
+  if (resGroup) resGroup.classList.toggle('advanced-locked', !advancedMode);
+  if (infillGroup) infillGroup.classList.toggle('advanced-locked', !advancedMode);
+}
+
+function resetFdmAdvancedDefaults() {
+  const fdmRes = document.getElementById('fdm-resolution');
+  const fdmInfill = document.getElementById('fdm-infill');
+  if (fdmRes) fdmRes.value = DEFAULT_FDM_LAYER;
+  if (fdmInfill) fdmInfill.value = DEFAULT_FDM_INFILL;
+}
+
+function setAdvancedMode(enabled) {
+  advancedMode = !!enabled;
+  if (!advancedMode) resetFdmAdvancedDefaults();
+  updateAdvancedModeUI();
+  updatePrice();
+}
+
+function resetMslaDefaults() {
+  const mslaRes  = document.getElementById('msla-resolution');
+  const mslaWall = document.getElementById('msla-wall');
+  if (mslaRes)  mslaRes.value  = DEFAULT_MSLA_LAYER;
+  if (mslaWall) mslaWall.value = DEFAULT_MSLA_WALL;
+  // Reset fill mode to wall
+  resinFillMode = 'wall';
+  ['infill','wall','solid'].forEach(m => {
+    const btn = document.getElementById('btn-'+m);
+    const sub = document.getElementById(m+'-sub');
+    if (btn) btn.classList.toggle('active', m==='wall');
+    if (sub) sub.style.display = m==='wall' ? '' : 'none';
+  });
+}
+
+function updateMslaAdvancedModeUI() {
+  const toggle  = document.getElementById('mslaAdvancedModeToggle');
+  const label   = document.getElementById('mslaAdvancedModeLabel');
+  const warning = document.getElementById('mslaAdvancedWarning');
+  const mslaRes   = document.getElementById('msla-resolution');
+  const resGroup  = document.getElementById('msla-resolution-group');
+  const fillGroup = document.getElementById('msla-fill-group');
+  const fillBtns  = fillGroup ? fillGroup.querySelectorAll('.fill-toggle-btn') : [];
+  if (toggle)  toggle.checked = mslaAdvancedMode;
+  if (label)   label.textContent = mslaAdvancedMode ? 'Advanced on' : 'Advanced off';
+  if (warning) warning.classList.toggle('visible', mslaAdvancedMode);
+  if (mslaRes) mslaRes.disabled = !mslaAdvancedMode;
+  const mslaInfill = document.getElementById('msla-infill');
+  const mslaWall   = document.getElementById('msla-wall');
+  if (mslaInfill) mslaInfill.disabled = !mslaAdvancedMode;
+  if (mslaWall)   mslaWall.disabled   = !mslaAdvancedMode;
+  if (resGroup)  resGroup.classList.toggle('advanced-locked', !mslaAdvancedMode);
+  if (fillGroup) fillGroup.classList.toggle('advanced-locked', !mslaAdvancedMode);
+  fillBtns.forEach(btn => btn.disabled = !mslaAdvancedMode);
+}
+
+function setMslaAdvancedMode(enabled) {
+  mslaAdvancedMode = !!enabled;
+  if (!mslaAdvancedMode) resetMslaDefaults();
+  updateMslaAdvancedModeUI();
+  updatePrice();
 }
 
 function onTechChange() {
   const tech = getTech();
+  // Reset advanced modes when switching technology
+  if (tech === 'fdm' && mslaAdvancedMode) { mslaAdvancedMode = false; resetMslaDefaults(); }
+  if (tech === 'msla' && advancedMode)    { advancedMode = false; resetFdmAdvancedDefaults(); }
   document.getElementById('fdm-material-group').style.display    = tech==='fdm'  ?'':'none';
+  document.getElementById('fdm-color-group').style.display       = tech==='fdm'  ?'':'none';
   document.getElementById('msla-material-group').style.display   = tech==='msla' ?'':'none';
-  document.getElementById('fdm-resolution-group').style.display  = tech==='fdm'  ?'':'none';
-  document.getElementById('msla-resolution-group').style.display = tech==='msla' ?'':'none';
-  document.getElementById('fdm-infill-group').style.display      = tech==='fdm'  ?'':'none';
-  document.getElementById('msla-fill-group').style.display       = tech==='msla' ?'':'none';
+  document.getElementById('msla-color-group').style.display      = tech==='msla' ?'':'none';
+  document.getElementById('fdm-resolution-group').style.display    = tech==='fdm'  ?'':'none';
+  document.getElementById('msla-resolution-group').style.display   = tech==='msla' ?'':'none';
+  document.getElementById('fdm-infill-group').style.display        = tech==='fdm'  ?'':'none';
+  document.getElementById('msla-fill-group').style.display         = tech==='msla' ?'':'none';
+  document.getElementById('mslaAdvancedSettingsCard').style.display = tech==='msla' ?'':'none';
+  // Hide FDM advanced card when on MSLA and vice versa
+  document.getElementById('advancedSettingsCard').style.display    = tech==='fdm'  ?'':'none';
+  updateAdvancedModeUI();
+  updateMslaAdvancedModeUI();
   updatePrice();
 }
 
 function setResinFill(mode) {
+  if (!mslaAdvancedMode) return; // locked when not in advanced mode
   resinFillMode = mode;
   ['infill','wall','solid'].forEach(m => {
     document.getElementById('btn-'+m).classList.toggle('active', m===mode);
@@ -868,6 +1291,26 @@ function goTo(step) {
   }
   if (step===3) buildSummary();
   window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// Step pill navigation — only allow going to steps already reached or going back.
+// Step 1: always allowed.
+// Step 2: only if a file is loaded (meshVolumeCm3 !== null).
+// Step 3: only if price can be calculated (same condition as the Next button).
+// Step 4: never directly (only reached after confirm submission).
+function navigateToStep(step) {
+  const currentActive = [1,2,3,4].find(i => document.getElementById('panel-'+i).classList.contains('active')) || 1;
+  if (step === 1) { goTo(1); return; }
+  if (step === 2) {
+    if (meshVolumeCm3 === null) return; // no file loaded yet
+    goTo(2); return;
+  }
+  if (step === 3) {
+    if (meshVolumeCm3 === null) return;
+    if (calcPrice() === null) return;
+    goTo(3); return;
+  }
+  // Step 4 not directly reachable
 }
 
 function changeQty(delta) {
@@ -897,6 +1340,10 @@ function handleFile(file) {
 }
 
 // ── STL/OBJ parse + volume + preview ────────────────────────
+// FIX 1: Robust signed-volume with non-manifold fallback
+// FIX 2: Auto unit detection (inches vs mm)
+// FIX 3: Improved FDM machine-time using Z-height + speed model
+
 function loadAndPreview(file) {
   const ext = file.name.split('.').pop().toLowerCase();
   if (ext === 'stl') {
@@ -910,53 +1357,61 @@ function loadAndPreview(file) {
   }
 }
 
-function processSTL(buffer) {
-  const {positions, normals} = parseSTLBuffer(buffer);
-  triCount = positions.length / 9;
-  const vol = computeSignedVolume(positions);
-  const bbox = computeBbox(positions);
-  storeGeoData(vol, bbox, triCount);
-  renderMesh(positions, normals);
+// ── FIX 2: Unit detection ──────────────────────────────────
+// Most printers export in mm. A bounding box max dim > 1500 almost certainly
+// means the file was saved in inches (common in Fusion 360, SolidWorks defaults).
+// Threshold: 1500 mm (~60 inches) — no consumer FDM/MSLA part is that large.
+// If detected, we divide all coords by 25.4 to convert to mm.
+function detectAndNormalizeUnits(positions) {
+  let maxVal = 0;
+  for (let i = 0; i < positions.length; i++) {
+    const v = Math.abs(positions[i]);
+    if (v > maxVal) maxVal = v;
+  }
+  if (maxVal > 1500) {
+    // Likely inches — convert to mm
+    const out = new Float32Array(positions.length);
+    for (let i = 0; i < positions.length; i++) out[i] = positions[i] / 25.4;
+    console.warn(`[Axonas3D] Unit auto-fix: max coord ${maxVal.toFixed(1)} → interpreted as inches, converted to mm.`);
+    return { positions: out, unitWarning: true };
+  }
+  return { positions, unitWarning: false };
 }
 
-function processOBJ(text) {
-  const {positions} = parseOBJText(text);
-  triCount = positions.length / 9;
-  const vol = computeSignedVolume(positions);
-  const bbox = computeBbox(positions);
-  storeGeoData(vol, bbox, triCount);
-  renderMesh(positions, null);
-}
-
-function storeGeoData(volMm3, bbox, tris) {
-  meshVolumeCm3 = Math.abs(volMm3) / 1000;
-  bboxDims = bbox.size;
-  bboxVolumeCm3 = (bbox.size.x * bbox.size.y * bbox.size.z) / 1000;
-
-  document.getElementById('statVol').textContent  = meshVolumeCm3.toFixed(2) + ' cm³';
-  document.getElementById('statBbox').textContent = `${bbox.size.x.toFixed(1)} × ${bbox.size.y.toFixed(1)} × ${bbox.size.z.toFixed(1)} mm`;
-  document.getElementById('statTris').textContent = tris.toLocaleString();
-  document.getElementById('statMass').textContent = '~' + (meshVolumeCm3 * 1.24).toFixed(1) + ' g (PLA solid)';
-  document.getElementById('geoStats').classList.add('visible');
-  document.getElementById('nextBtn1').disabled = false;
-  updatePrice();
-}
-
-// Signed volume via divergence theorem (gives signed volume in mm3 if coords in mm)
+// ── FIX 1: Robust volume ──────────────────────────────────
+// Primary: signed volume via divergence theorem (exact for closed manifold meshes).
+// Fallback: if the result is suspiciously small (< 0.5% of bbox volume), the mesh
+// is probably non-manifold or has flipped normals — we fall back to 60% of bbox
+// volume as a conservative estimate (typical solid part fill factor).
 function computeSignedVolume(pos) {
   let vol = 0;
-  for (let i=0; i<pos.length; i+=9) {
-    const ax=pos[i],ay=pos[i+1],az=pos[i+2];
+  for (let i = 0; i < pos.length; i += 9) {
+    const ax=pos[i],  ay=pos[i+1],az=pos[i+2];
     const bx=pos[i+3],by=pos[i+4],bz=pos[i+5];
     const cx=pos[i+6],cy=pos[i+7],cz=pos[i+8];
-    vol += (ax*(by*cz-bz*cy) - ay*(bx*cz-bz*cx) + az*(bx*cy-by*cx));
+    vol += ax*(by*cz - bz*cy) - ay*(bx*cz - bz*cx) + az*(bx*cy - by*cx);
   }
   return vol / 6;
 }
 
+function computeRobustVolumeMm3(pos, bbox) {
+  const signed   = computeSignedVolume(pos);
+  const absVol   = Math.abs(signed);
+  const bboxVol  = bbox.size.x * bbox.size.y * bbox.size.z;
+
+  // Sanity: result must be > 0.5% of bounding box and positive
+  if (absVol > bboxVol * 0.005 && signed !== 0) {
+    return { volumeMm3: absVol, method: 'mesh' };
+  }
+
+  // Non-manifold fallback: use 60% of bbox (conservative solid fill estimate)
+  console.warn('[Axonas3D] Non-manifold mesh detected — falling back to bbox volume estimate.');
+  return { volumeMm3: bboxVol * 0.60, method: 'bbox_fallback' };
+}
+
 function computeBbox(pos) {
   let minX=Infinity,minY=Infinity,minZ=Infinity,maxX=-Infinity,maxY=-Infinity,maxZ=-Infinity;
-  for (let i=0;i<pos.length;i+=3) {
+  for (let i = 0; i < pos.length; i += 3) {
     minX=Math.min(minX,pos[i]);   maxX=Math.max(maxX,pos[i]);
     minY=Math.min(minY,pos[i+1]); maxY=Math.max(maxY,pos[i+1]);
     minZ=Math.min(minZ,pos[i+2]); maxZ=Math.max(maxZ,pos[i+2]);
@@ -964,43 +1419,178 @@ function computeBbox(pos) {
   return {min:{x:minX,y:minY,z:minZ},max:{x:maxX,y:maxY,z:maxZ},size:{x:maxX-minX,y:maxY-minY,z:maxZ-minZ}};
 }
 
+function processSTL(buffer) {
+  const raw = parseSTLBuffer(buffer);
+  const { positions: pos, normals } = raw;
+  const { positions, unitWarning } = detectAndNormalizeUnits(pos instanceof Float32Array ? pos : new Float32Array(pos));
+  triCount = positions.length / 9;
+  const bbox = computeBbox(positions);
+  const { volumeMm3, method } = computeRobustVolumeMm3(positions, bbox);
+  storeGeoData(volumeMm3, bbox, triCount, unitWarning, method);
+  renderMesh(Array.from(positions), normals instanceof Float32Array ? Array.from(normals) : normals);
+}
+
+function processOBJ(text) {
+  const { positions: rawPos } = parseOBJText(text);
+  const rawF32 = new Float32Array(rawPos);
+  const { positions, unitWarning } = detectAndNormalizeUnits(rawF32);
+  triCount = positions.length / 9;
+  const bbox = computeBbox(positions);
+  const { volumeMm3, method } = computeRobustVolumeMm3(positions, bbox);
+  storeGeoData(volumeMm3, bbox, triCount, unitWarning, method);
+  renderMesh(Array.from(positions), null);
+}
+
+function storeGeoData(volMm3, bbox, tris, unitWarning, volumeMethod) {
+  meshVolumeCm3 = volMm3 / 1000;
+  bboxDims      = bbox.size;
+  bboxVolumeCm3 = (bbox.size.x * bbox.size.y * bbox.size.z) / 1000;
+
+  document.getElementById('statVol').textContent  = meshVolumeCm3.toFixed(2) + ' cm³' + (volumeMethod === 'bbox_fallback' ? ' *' : '');
+  document.getElementById('statBbox').textContent = `${bbox.size.x.toFixed(1)} × ${bbox.size.y.toFixed(1)} × ${bbox.size.z.toFixed(1)} mm`;
+  document.getElementById('statTris').textContent = tris.toLocaleString();
+  document.getElementById('geoStats').classList.add('visible');
+  document.getElementById('nextBtn1').disabled = false;
+  updateStatMass();
+
+  // Show unit-conversion warning if detected
+  const existingWarn = document.getElementById('unitWarnBanner');
+  if (existingWarn) existingWarn.remove();
+  if (unitWarning) {
+    const banner = document.createElement('div');
+    banner.id = 'unitWarnBanner';
+    banner.style.cssText = 'margin-top:10px;padding:10px 14px;border-radius:8px;background:rgba(204,43,43,0.08);border:1px solid rgba(204,43,43,0.3);font-size:12px;color:rgba(255,255,255,0.75);font-family:var(--mono);letter-spacing:0.06em';
+    banner.textContent = '⚠ File appeared to be in inches — dimensions automatically converted to mm. Please verify the bounding box above.';
+    document.getElementById('geoStats').after(banner);
+  }
+
+  updateStatMass();
+  updatePrice();
+}
+
+// Keep the EST. SOLID MASS stat in sync with the cotizador's actual weight calculation.
+// Called on file load and every time updatePrice() runs.
+function updateStatMass() {
+  const el = document.getElementById('statMass');
+  if (!el || meshVolumeCm3 === null) return;
+  const grams = getEstimatedGrams();
+  if (grams !== null) {
+    const mat = getMat().toUpperCase().replace('_', ' ');
+    const matLabel = MAT_NAMES[mat] || mat;
+    el.textContent = '~' + grams.toFixed(1) + ' g (' + matLabel + ' @ current infill)';
+  } else {
+    // Fallback before config panel is shown: show PLA solid reference
+    const density = 1.24;
+    el.textContent = '~' + (meshVolumeCm3 * density).toFixed(1) + ' g (PLA solid ref.)';
+  }
+}
+
+// ── FIX 3: Improved machine-time model ────────────────────
+// Old model: setupHours + vol * 0.045  (ignores Z height, always wrong for tall thin parts)
+// New model for FDM:
+//   layers     = Z_mm / layerHeight
+//   timePerLayer = perimeter_time + infill_time (derived from XY cross-section area)
+//   We approximate average cross-section as vol / Z, giving a volume-per-layer.
+//   Speed constants calibrated to ~50 mm/s travel, 0.4 mm nozzle.
+function getEstimatedMachineHours() {
+  const tech        = getTech();
+  const printedVol  = getPrintedVolumeCm3();
+  if (printedVol === null || !bboxDims) return null;
+
+  const layerTimeMultiplier = getLayerTimeMultiplier();
+
+  if (tech === 'fdm') {
+    const layerMm     = parseFloat(document.getElementById('fdm-resolution').value) || 0.20;
+    const zMm         = bboxDims.z;
+    const numLayers   = Math.max(1, zMm / layerMm);
+
+    // Average cross-section area in mm² (vol in cm³ → mm³, divided by height in mm)
+    const volMm3      = printedVol * 1000;
+    const avgAreaMm2  = volMm3 / zMm;
+
+    // Perimeter estimate: sqrt of area gives approximate side length of equivalent square
+    const perimMm     = 4 * Math.sqrt(avgAreaMm2);
+
+    // Time per layer: perimeter at 40 mm/s + infill area at effective 60 mm/s
+    const perimTimeSec  = perimMm / 40;
+    const infillTimeSec = avgAreaMm2 / 60;
+    const layerTimeSec  = (perimTimeSec + infillTimeSec) * layerTimeMultiplier;
+
+    const printTimeSec  = numLayers * layerTimeSec;
+    const setupHours    = 0.15; // homing, heating, bed leveling
+    return setupHours + (printTimeSec / 3600);
+  }
+
+  // MSLA: time is purely layer-count × exposure time (XY is irrelevant per layer)
+  if (tech === 'msla') {
+    const layerMm   = parseFloat(document.getElementById('msla-resolution').value) || 0.08;
+    const numLayers = Math.max(1, bboxDims.z / layerMm);
+    // ~8 s per layer at 0.08 mm standard, scaled by layerTimeMultiplier
+    const secPerLayer = 8 * layerTimeMultiplier;
+    const setupHours  = 0.35;
+    return setupHours + ((numLayers * secPerLayer) / 3600);
+  }
+
+  return null;
+}
+
 function parseSTLBuffer(buffer) {
   const dv = new DataView(buffer);
-  const numTri = dv.getUint32(80,true);
-  const isBinary = buffer.byteLength === 84 + numTri*50;
-  const positions=[], normals=[];
+  const numTri = dv.getUint32(80, true);
+  const isBinary = buffer.byteLength === 84 + numTri * 50;
+  const positions = [], normals = [];
+
   if (isBinary) {
-    for (let i=0;i<numTri;i++) {
-      const o=84+i*50;
-      normals.push(dv.getFloat32(o,true),dv.getFloat32(o+4,true),dv.getFloat32(o+8,true));
-      normals.push(dv.getFloat32(o,true),dv.getFloat32(o+4,true),dv.getFloat32(o+8,true));
-      normals.push(dv.getFloat32(o,true),dv.getFloat32(o+4,true),dv.getFloat32(o+8,true));
-      for (let v=0;v<3;v++) positions.push(dv.getFloat32(o+12+v*12,true),dv.getFloat32(o+16+v*12,true),dv.getFloat32(o+20+v*12,true));
+    for (let i = 0; i < numTri; i++) {
+      const o = 84 + i * 50;
+      const nx=dv.getFloat32(o,true), ny=dv.getFloat32(o+4,true), nz=dv.getFloat32(o+8,true);
+      for (let v = 0; v < 3; v++) { normals.push(nx, ny, nz); }
+      for (let v = 0; v < 3; v++) {
+        positions.push(
+          dv.getFloat32(o + 12 + v*12, true),
+          dv.getFloat32(o + 16 + v*12, true),
+          dv.getFloat32(o + 20 + v*12, true)
+        );
+      }
     }
   } else {
-    const text=new TextDecoder().decode(buffer);
-    const re=/normal\s+([\d.eE+\-]+)\s+([\d.eE+\-]+)\s+([\d.eE+\-]+)[\s\S]*?vertex\s+([\d.eE+\-]+)\s+([\d.eE+\-]+)\s+([\d.eE+\-]+)\s+vertex\s+([\d.eE+\-]+)\s+([\d.eE+\-]+)\s+([\d.eE+\-]+)\s+vertex\s+([\d.eE+\-]+)\s+([\d.eE+\-]+)\s+([\d.eE+\-]+)/g;
+    // ASCII STL — also handle negative numbers and scientific notation
+    const text = new TextDecoder().decode(buffer);
+    const re = /normal\s+([\d.eE+\-]+)\s+([\d.eE+\-]+)\s+([\d.eE+\-]+)[\s\S]*?vertex\s+([\d.eE+\-]+)\s+([\d.eE+\-]+)\s+([\d.eE+\-]+)\s+vertex\s+([\d.eE+\-]+)\s+([\d.eE+\-]+)\s+([\d.eE+\-]+)\s+vertex\s+([\d.eE+\-]+)\s+([\d.eE+\-]+)\s+([\d.eE+\-]+)/g;
     let m;
-    while((m=re.exec(text))!==null){
-      const nx=parseFloat(m[1]),ny=parseFloat(m[2]),nz=parseFloat(m[3]);
-      for(let v=0;v<3;v++){normals.push(nx,ny,nz);}
-      positions.push(parseFloat(m[4]),parseFloat(m[5]),parseFloat(m[6]),parseFloat(m[7]),parseFloat(m[8]),parseFloat(m[9]),parseFloat(m[10]),parseFloat(m[11]),parseFloat(m[12]));
+    while ((m = re.exec(text)) !== null) {
+      const nx=parseFloat(m[1]), ny=parseFloat(m[2]), nz=parseFloat(m[3]);
+      for (let v = 0; v < 3; v++) { normals.push(nx, ny, nz); }
+      positions.push(
+        parseFloat(m[4]),parseFloat(m[5]),parseFloat(m[6]),
+        parseFloat(m[7]),parseFloat(m[8]),parseFloat(m[9]),
+        parseFloat(m[10]),parseFloat(m[11]),parseFloat(m[12])
+      );
     }
   }
-  return {positions,normals};
+  return { positions, normals };
 }
 
 function parseOBJText(text) {
-  const verts=[], positions=[];
+  const verts = [], positions = [];
   for (const line of text.split('\n')) {
-    const p=line.trim().split(/\s+/);
-    if (p[0]==='v') verts.push([parseFloat(p[1]),parseFloat(p[2]),parseFloat(p[3])]);
-    else if (p[0]==='f') {
-      const idx=p.slice(1).map(x=>parseInt(x.split('/')[0])-1);
-      for (let i=1;i<idx.length-1;i++) [idx[0],idx[i],idx[i+1]].forEach(j=>positions.push(...verts[j]));
+    const p = line.trim().split(/\s+/);
+    if (p[0] === 'v') {
+      verts.push([parseFloat(p[1]), parseFloat(p[2]), parseFloat(p[3])]);
+    } else if (p[0] === 'f') {
+      // Support faces with vertex/uv/normal notation and n-gons (fan triangulation)
+      const idx = p.slice(1).map(x => {
+        const i = parseInt(x.split('/')[0]);
+        return i < 0 ? verts.length + i : i - 1; // handle negative indices
+      });
+      for (let i = 1; i < idx.length - 1; i++) {
+        [idx[0], idx[i], idx[i+1]].forEach(j => {
+          if (verts[j]) positions.push(...verts[j]);
+        });
+      }
     }
   }
-  return {positions};
+  return { positions };
 }
 
 // ── Three.js viewer ──────────────────────────────────────────
@@ -1043,10 +1633,42 @@ function renderMesh(positions, normals) {
   canvas.addEventListener('mousemove',e=>{if(!isDragging)return;rotY+=(e.clientX-prevX)*0.01;rotX+=(e.clientY-prevY)*0.01;prevX=e.clientX;prevY=e.clientY;group.rotation.y=rotY;group.rotation.x=rotX;});
   canvas.addEventListener('mouseup',()=>isDragging=false);
   canvas.addEventListener('mouseleave',()=>isDragging=false);
-  canvas.addEventListener('wheel',e=>{camera.position.z=Math.max(maxDim*0.3,Math.min(maxDim*8,camera.position.z+e.deltaY*maxDim*0.002));},{passive:true});
+  canvas.addEventListener('wheel',e=>{
+    e.preventDefault(); // stop page scroll when cursor is over canvas
+    camera.position.z=Math.max(maxDim*0.3,Math.min(maxDim*8,camera.position.z+e.deltaY*maxDim*0.002));
+  },{passive:false});
   let ltx,lty;
-  canvas.addEventListener('touchstart',e=>{ltx=e.touches[0].clientX;lty=e.touches[0].clientY;});
-  canvas.addEventListener('touchmove',e=>{e.preventDefault();rotY+=(e.touches[0].clientX-ltx)*0.012;rotX+=(e.touches[0].clientY-lty)*0.012;ltx=e.touches[0].clientX;lty=e.touches[0].clientY;group.rotation.y=rotY;group.rotation.x=rotX;},{passive:false});
+  let pinchDist0 = null;
+  canvas.addEventListener('touchstart',e=>{
+    e.preventDefault();
+    if(e.touches.length===1){ltx=e.touches[0].clientX;lty=e.touches[0].clientY;pinchDist0=null;}
+    if(e.touches.length===2){
+      const dx=e.touches[0].clientX-e.touches[1].clientX;
+      const dy=e.touches[0].clientY-e.touches[1].clientY;
+      pinchDist0=Math.sqrt(dx*dx+dy*dy);
+    }
+  },{passive:false});
+  canvas.addEventListener('touchmove',e=>{
+    e.preventDefault(); // stop page scroll/zoom on mobile
+    if(e.touches.length===1 && pinchDist0===null){
+      // single finger — rotate
+      rotY+=(e.touches[0].clientX-ltx)*0.012;
+      rotX+=(e.touches[0].clientY-lty)*0.012;
+      ltx=e.touches[0].clientX;lty=e.touches[0].clientY;
+      group.rotation.y=rotY;group.rotation.x=rotX;
+    } else if(e.touches.length===2){
+      // two fingers — pinch to zoom
+      const dx=e.touches[0].clientX-e.touches[1].clientX;
+      const dy=e.touches[0].clientY-e.touches[1].clientY;
+      const dist=Math.sqrt(dx*dx+dy*dy);
+      if(pinchDist0!==null){
+        const delta=(pinchDist0-dist)*maxDim*0.008;
+        camera.position.z=Math.max(maxDim*0.3,Math.min(maxDim*8,camera.position.z+delta));
+      }
+      pinchDist0=dist;
+    }
+  },{passive:false});
+  canvas.addEventListener('touchend',e=>{if(e.touches.length<2)pinchDist0=null;},{passive:false});
 
   let animId;
   function animate(){animId=requestAnimationFrame(animate);if(!isDragging)group.rotation.y+=0.004;renderer.render(scene,camera);}
@@ -1066,13 +1688,13 @@ async function submitOtherFormat() {
   const phone = document.getElementById('otherPhone').value.trim();
   const fmt   = document.getElementById('otherFormat').value;
   const notes = document.getElementById('otherNotes').value.trim();
-  if (!name || !email) { alert('Please enter your name and email.'); return; }
+  if (!name || !email) { alert(t('alertNameEmail')); return; }
 
   document.getElementById('sendingOverlay').classList.add('visible');
   document.getElementById('otherSubmitBtn').disabled = true;
 
   const quoteId = 'AX-' + Date.now().toString().slice(-8);
-  const toAxonas = `NEW QUOTE REQUEST — ${fmt} File Format
+  const toAxonas3D = `NEW QUOTE REQUEST — ${fmt} File Format
 
 Quote ID: ${quoteId}
 
@@ -1129,34 +1751,49 @@ axonas3d@gmail.com`;
     tax: 'TBD',
     estimated_total: 'TBD',
     notes: notes || 'None provided',
-    message: toAxonas,
+    special_notes: notes || 'None provided',
+    message: toAxonas3D,
     customer_message: toCustomer,
-    reference_images: 'None',
     from_name: name,
     from_email: email,
     user_name: name,
     user_email: email,
     email: email,
-    to_name: 'Axonas3D'
+    to_name: 'Axonas3D',
+    language: t('languageName'),
+    selected_language: currentLanguage,
+    currency: getCurrencySettings().code,
+    tax_rate: (getCurrencySettings().taxRate * 100).toFixed(getCurrencySettings().taxRate === 0.08 ? 0 : 2) + '%',
+    minimum_order: formatMoney(getCurrencySettings().minOrder)
   };
 
   let emailPopup = null;
   try { emailPopup = window.open('about:blank', '_blank'); } catch (_) {}
 
   try {
-    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_OWNER_TEMPLATE_ID, params);
-    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_CUSTOMER_TEMPLATE_ID, params);
+    await emailjs.send(EMAILJS_SERVICE_ID, getEmailTemplateId(), {
+      ...params,
+      to_email: OWNER_EMAIL,
+      recipient_email: OWNER_EMAIL,
+      recipient_type: 'owner'
+    });
+    await emailjs.send(EMAILJS_SERVICE_ID, getEmailTemplateId(), {
+      ...params,
+      to_email: email,
+      recipient_email: email,
+      recipient_type: 'customer'
+    });
 
     document.getElementById('sendingOverlay').classList.remove('visible');
     buildContactLinks({name, quoteId, fileName: fmt + ' file', tech: '—', matName: '—', resName: '—', fillLabel: '—', fillVal: '—', qty: 1, post: '—', price: 'TBD'});
     goTo(4);
-    openAxonasEmail({ name, quoteId, fileName: fmt + ' file', price: 'TBD', email }, emailPopup);
+    openAxonas3DEmail({ name, quoteId, fileName: fmt + ' file', price: 'TBD', email }, emailPopup);
   } catch(e) {
     if (emailPopup && !emailPopup.closed) emailPopup.close();
     console.error('EmailJS error:', e);
     document.getElementById('sendingOverlay').classList.remove('visible');
     document.getElementById('otherSubmitBtn').disabled = false;
-    alert('The request could not be sent. Check the console and your EmailJS template/service IDs. You can also email axonas3d@gmail.com directly.');
+    alert(t('otherSendFail'));
   }
 }
 
@@ -1165,10 +1802,10 @@ async function submitOrder() {
   const name  = document.getElementById('contactName').value.trim();
   const email = document.getElementById('contactEmail').value.trim();
   const phone = document.getElementById('contactPhone').value.trim();
-  if (!name || !email) { alert('Please enter your name and email.'); return; }
+  if (!name || !email) { alert(t('alertNameEmail')); return; }
 
   const p = calcPrice();
-  if (!p) { alert('Price could not be calculated. Please go back and check your file.'); return; }
+  if (!p) { alert(t('alertPrice')); return; }
 
   const tech = getTech();
   const mat  = getMat();
@@ -1176,22 +1813,21 @@ async function submitOrder() {
   const mslaRes = document.getElementById('msla-resolution').value;
   const resLabel = tech === 'fdm' ? fdmRes + 'mm' : mslaRes + 'mm';
   let fillLabel = '';
-  if (tech === 'fdm') fillLabel = (parseFloat(document.getElementById('fdm-infill').value) * 100).toFixed(0) + '% infill';
-  else if (resinFillMode === 'infill') fillLabel = (parseFloat(document.getElementById('msla-infill').value) * 100).toFixed(0) + '% infill';
-  else if (resinFillMode === 'wall') fillLabel = document.getElementById('msla-wall').value + 'mm wall';
-  else fillLabel = 'Solid';
+  if (tech === 'fdm') fillLabel = (parseFloat(document.getElementById('fdm-infill').value) * 100).toFixed(0) + '% ' + t('infill').toLowerCase();
+  else if (resinFillMode === 'infill') fillLabel = (parseFloat(document.getElementById('msla-infill').value) * 100).toFixed(0) + '% ' + t('infill').toLowerCase();
+  else if (resinFillMode === 'wall') fillLabel = document.getElementById('msla-wall').value + 'mm ' + t('wall').toLowerCase();
+  else fillLabel = t('solid');
 
   const fileName = document.getElementById('fileName').textContent;
   const fileSize = document.getElementById('fileSize') ? document.getElementById('fileSize').textContent : 'N/A';
   const notes = document.getElementById('notes').value.trim();
-  const postLabel = POST_NAMES[document.getElementById('post').value] || 'None';
+  const postLabel = POST_NAMES_BY_LANG[currentLanguage][document.getElementById('post').value] || t('none');
   const quoteId = 'AX-' + Date.now().toString().slice(-8);
   const technologyLabel = tech === 'fdm' ? 'FDM — Fused Deposition' : 'MSLA — Resin';
   const materialLabel = MAT_NAMES[mat] || mat;
-  const totalLabel = '$' + p.total.toFixed(2);
-  const uploadedImages = refImages.length ? refImages.map((img, i) => `Reference image ${i + 1}: ${img.name}`).join('\n') : 'None';
+  const totalLabel = formatMoney(p.total);
 
-  const toAxonas = `New Axonas3D quote request
+  const toAxonas3D = `New Axonas3D quote request
 
 Quote ID: ${quoteId}
 
@@ -1222,18 +1858,18 @@ Estimated print weight: ${p.grams.toFixed(1)} g
 Estimated machine time: ${p.machineHours.toFixed(2)} hr
 
 Pricing:
-Material cost: $${p.materialCost.toFixed(2)}
-Machine time cost: $${p.machineCost.toFixed(2)}
-Post-processing: $${p.post.toFixed(2)}
-Subtotal: $${p.subtotal.toFixed(2)}
-Tax (8.25%): $${p.tax.toFixed(2)}
+Material cost: ${formatMoney(p.materialCost)}
+Machine time cost: ${formatMoney(p.machineCost)}
+Post-processing: ${formatMoney(p.post)}
+Subtotal: ${formatMoney(p.subtotal)}
+Tax (${(p.taxRate * 100).toFixed(p.taxRate === 0.08 ? 0 : 2)}%): ${formatMoney(p.tax)}
 Total: ${totalLabel}
+
+Estimate notice:
+${t('estimateDisclaimer')}
 
 Notes:
 ${notes || 'None'}
-
-Reference images:
-${uploadedImages}
 
 Important: If the CAD file is not attached to this email, ask the customer to reply with the STL/OBJ/STEP file.`;
 
@@ -1255,11 +1891,11 @@ Quantity: ${p.qty} unit(s)
 Post-processing: ${postLabel}
 Estimated weight: ${p.grams.toFixed(1)} g
 Estimated machine time: ${p.machineHours.toFixed(2)} hr
-Subtotal: $${p.subtotal.toFixed(2)}
-Tax (8.25%): $${p.tax.toFixed(2)}
+Subtotal: ${formatMoney(p.subtotal)}
+Tax (${(p.taxRate * 100).toFixed(p.taxRate === 0.08 ? 0 : 2)}%): ${formatMoney(p.tax)}
 Total: ${totalLabel}
 
-This is an estimated price. The final price will be confirmed after Axonas3D reviews your file.
+${t('estimateDisclaimer')}
 
 If your 3D file was not attached successfully, please email it directly to axonas3d@gmail.com and include your Quote ID: ${quoteId}.
 
@@ -1284,8 +1920,8 @@ axonas3d@gmail.com`;
     layer_weight_factor: (p.layerMassMultiplier * 100).toFixed(0) + '%',
     layer_time_factor: (p.layerTimeMultiplier * 100).toFixed(0) + '%',
     estimated_machine_time: p.machineHours.toFixed(2) + ' hr',
-    machine_time_cost: '$' + p.machineCost.toFixed(2),
-    machine_rate: '$' + p.machineRate.toFixed(2) + '/hr',
+    machine_time_cost: formatMoney(p.machineCost),
+    machine_rate: formatRatePerHour(MACHINE_RATE_PER_HOUR[tech] || 3.00),
     fill_label: fillLabel,
     quantity: String(p.qty),
     post_processing_label: postLabel,
@@ -1293,19 +1929,27 @@ axonas3d@gmail.com`;
     bounding_box: bboxDims ? `${bboxDims.x.toFixed(1)} × ${bboxDims.y.toFixed(1)} × ${bboxDims.z.toFixed(1)} mm` : 'N/A',
     triangle_count: triCount ? triCount.toLocaleString() : 'N/A',
     estimated_weight: p.grams.toFixed(1) + ' g',
-    subtotal: '$' + p.subtotal.toFixed(2),
-    tax: '$' + p.tax.toFixed(2),
+    subtotal: formatMoney(p.subtotal),
+    tax: formatMoney(p.tax),
     estimated_total: totalLabel,
+    estimate_disclaimer: t('estimateDisclaimer'),
+    quote_disclaimer: t('estimateDisclaimer'),
     notes: notes || 'None',
-    message: toAxonas,
+    special_notes: notes || 'None',
+    message: toAxonas3D,
     customer_message: toCustomer,
-    reference_images: uploadedImages,
     from_name: name,
     from_email: email,
     user_name: name,
     user_email: email,
     email: email,
-    to_name: 'Axonas3D'
+    to_name: 'Axonas3D',
+    language: t('languageName'),
+    selected_language: currentLanguage,
+    currency: p.currencyCode,
+    tax_rate: (p.taxRate * 100).toFixed(p.taxRate === 0.08 ? 0 : 2) + '%',
+    minimum_order: formatMoney(p.minOrder),
+    advanced_mode: advancedMode ? 'On' : 'Off'
   };
 
   document.getElementById('sendingOverlay').classList.add('visible');
@@ -1316,12 +1960,22 @@ axonas3d@gmail.com`;
   try { emailPopup = window.open('about:blank', '_blank'); } catch (_) {}
 
   try {
-    // Send quote request to Axonas. This sends the quote details only.
+    // Send quote request to Axonas3D. This sends the quote details only.
     // The CAD file is handled by the visible Gmail button because EmailJS attachments often fail on large 3D files.
-    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_OWNER_TEMPLATE_ID, commonParams);
+    await emailjs.send(EMAILJS_SERVICE_ID, getEmailTemplateId(), {
+      ...commonParams,
+      to_email: OWNER_EMAIL,
+      recipient_email: OWNER_EMAIL,
+      recipient_type: 'owner'
+    });
 
     // Send confirmation email to the customer.
-    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_CUSTOMER_TEMPLATE_ID, commonParams);
+    await emailjs.send(EMAILJS_SERVICE_ID, getEmailTemplateId(), {
+      ...commonParams,
+      to_email: email,
+      recipient_email: email,
+      recipient_type: 'customer'
+    });
 
     document.getElementById('sendingOverlay').classList.remove('visible');
     buildContactLinks({
@@ -1335,32 +1989,44 @@ axonas3d@gmail.com`;
       qty: p.qty,
       post: postLabel,
       price: p.total.toFixed(2),
+      priceLabel: totalLabel,
       fileName
     });
     goTo(4);
 
-    openAxonasEmail({ name, quoteId, fileName, price: p.total.toFixed(2), email }, emailPopup);
+    openAxonas3DEmail({ name, quoteId, fileName, price: p.total.toFixed(2), priceLabel: totalLabel, email }, emailPopup);
   } catch (e) {
     console.error('EmailJS error:', e);
     if (emailPopup && !emailPopup.closed) emailPopup.close();
     document.getElementById('sendingOverlay').classList.remove('visible');
     document.getElementById('confirmBtn').disabled = false;
-    alert('The quote could not be sent. Check the console and your EmailJS template/service IDs. You can also email axonas3d@gmail.com directly.');
+    alert(t('alertSendFail'));
   }
 }
 
-function openAxonasEmail(d, popupWindow) {
-  const subject = encodeURIComponent(`Axonas3D Quote ${d.quoteId} — ${d.name}`);
-  const body = encodeURIComponent(`Hi Axonas3D,
+function getClientEmailFileType(fileName) {
+  const raw = (fileName || '').trim();
+  const ext = raw.includes('.') ? raw.split('.').pop().toUpperCase() : raw.replace(/\s*file\s*$/i, '').toUpperCase();
+  return ext || '3D FILE';
+}
 
-I just submitted quote ${d.quoteId}.
+function getClientEmailPrice(d) {
+  return d.priceLabel || (String(d.price || '').startsWith('$') ? d.price : '$' + d.price);
+}
+
+function buildClientEmailBody(d) {
+  return `You must send your 3d file along with any instructions below:
+
+
 
 Name: ${d.name}
-Customer email: ${d.email}
-File: ${d.fileName}
-Estimated total: ${String(d.price).startsWith('$') ? d.price : '$' + d.price}
+Type of file: ${getClientEmailFileType(d.fileName)}
+Estimated price: ${getClientEmailPrice(d)}`;
+}
 
-I am sending/attaching the CAD file here if needed.`);
+function openAxonas3DEmail(d, popupWindow) {
+  const subject = encodeURIComponent(`Axonas3D Quote ${d.quoteId} — ${d.name}`);
+  const body = encodeURIComponent(buildClientEmailBody(d));
   const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(OWNER_EMAIL)}&su=${subject}&body=${body}`;
   const mailtoUrl = `mailto:${OWNER_EMAIL}?subject=${subject}&body=${body}`;
 
@@ -1375,12 +2041,12 @@ I am sending/attaching the CAD file here if needed.`);
     };
   }
 
-  // Popup can still be blocked. The visible Email Axonas button remains the reliable fallback.
+  // Popup can still be blocked. The visible Email Axonas3D button remains the reliable fallback.
   if (popupWindow && !popupWindow.closed) {
     popupWindow.location.href = gmailUrl;
   } else {
     const opened = window.open(gmailUrl, '_blank', 'noopener');
-    if (!opened && emailLink) emailLink.textContent = 'Email Axonas';
+    if (!opened && emailLink) emailLink.textContent = 'Email Axonas3D';
   }
 }
 
@@ -1395,14 +2061,17 @@ Material: ${d.matName}
 Layer height: ${d.resName}
 Fill: ${d.fillVal}
 Qty: ${d.qty}
-Total: $${d.price}
+Total: ${d.priceLabel || ('$' + d.price)}
 
 Please let me know next steps!`);
   document.getElementById('waLink').href  = `https://wa.me/19152806996?text=${text}`;
   document.getElementById('smsLink').href = `sms:+19152806996?body=${text}`;
 
   const subject = encodeURIComponent(`Axonas3D Quote ${d.quoteId || ''} — ${d.name}`);
-  const body = encodeURIComponent(`Hi Axonas3D,\n\nI just submitted a quote.\n\nQuote ID: ${d.quoteId || 'N/A'}\nName: ${d.name}\nFile: ${d.fileName}\nEstimated total: $${d.price}\n\nPlease let me know next steps.`);
+  const body = encodeURIComponent(buildClientEmailBody({
+    ...d,
+    priceLabel: d.priceLabel || ('$' + d.price)
+  }));
   const emailLink = document.getElementById('emailLink');
   if (emailLink) emailLink.href = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(OWNER_EMAIL)}&su=${subject}&body=${body}`;
 }
@@ -1413,18 +2082,11 @@ zone.addEventListener('dragover',e=>{e.preventDefault();zone.classList.add('drag
 zone.addEventListener('dragleave',()=>zone.classList.remove('drag-over'));
 zone.addEventListener('drop',e=>{e.preventDefault();zone.classList.remove('drag-over');handleFile(e.dataTransfer.files[0]);});
 
-// Image upload listeners (attached after DOM ready since panel-3 always exists)
-document.addEventListener('DOMContentLoaded', () => {
-  const imgInput = document.getElementById('imgInput');
-  if (imgInput) imgInput.addEventListener('change', e => handleRefImages(e.target.files));
-  const imgZone = document.getElementById('imgUploadZone');
-  if (imgZone) {
-    imgZone.addEventListener('dragover', e=>{e.preventDefault();imgZone.classList.add('drag-over');});
-    imgZone.addEventListener('dragleave', ()=>imgZone.classList.remove('drag-over'));
-    imgZone.addEventListener('drop', e=>{e.preventDefault();imgZone.classList.remove('drag-over');handleRefImages(e.dataTransfer.files);});
-  }
-});
 
+applyLanguage();
+// The popup is a layer over the first page; the website stays visible underneath.
+openLanguagePopup();
+initColorPickers();
 onTechChange();
 </script>
 </body>
