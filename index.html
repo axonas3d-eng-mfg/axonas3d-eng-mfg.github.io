@@ -724,7 +724,7 @@ const TEXT = {
     otherTitle: 'Send us your file',
     otherSub: "STEP, IGES, and 3MF files need to be reviewed manually. Fill in your details below and send us an email with your file attached — we'll get back to you with a quote within 24 hours.",
     yourName: 'Your name', emailAddress: 'Email address', phone: 'Phone / WhatsApp (optional)', fileFormat: 'File format', projectDesc: 'Project description',
-    sendQuoteRequest: 'Send quote request →', configurePrint: 'Configure print →', printTech: 'Print technology', filamentMaterial: 'Filament material', resinMaterial: 'Resin material', layerHeight: 'Layer height', infillDensity: 'Infill density', fillStrategy: 'Fill strategy',
+    sendQuoteRequest: 'Send quote request →', configurePrint: 'Configure print →', printTech: 'Print technology', filamentMaterial: 'Filament material', color: 'Color', resinMaterial: 'Resin material', layerHeight: 'Layer height', infillDensity: 'Infill density', fillStrategy: 'Fill strategy',
     infill: 'Infill', wall: 'Wall', solid: 'Solid', quantity: 'Quantity', postProcessing: 'Post-processing', notes: 'Special notes (optional)', totalInclTax: 'Total (incl. tax)', minimumOrder: '* $5.00 minimum order applied', back: '← Back', reviewOrder: 'Review order →', orderSummary: 'Order summary', confirmOrder: 'Confirm order →',
     successTitle: 'Order received.', successMsg: 'The Axonas3D team will review your quote and reach out within <strong>24 hours</strong> to confirm details and payment.', attachTitle: 'Important: CAD file',
     attachText: 'A confirmation email should be sent to your inbox from Axonas3D.<br><br><strong>If the CAD file does not attach through the form, click “Email Axonas3D” and attach your STL, OBJ, STEP, or 3MF file manually.</strong><br>We cannot start your order or finalize the quote without the 3D file. Please include your Quote ID in the email.',
@@ -743,7 +743,7 @@ const TEXT = {
     otherTitle: 'Envíanos tu archivo',
     otherSub: 'Los archivos STEP, IGES y 3MF necesitan revisión manual. Llena tus datos abajo y envíanos un correo con tu archivo adjunto — te responderemos con una cotización dentro de 24 horas.',
     yourName: 'Tu nombre', emailAddress: 'Correo electrónico', phone: 'Teléfono / WhatsApp (opcional)', fileFormat: 'Formato de archivo', projectDesc: 'Descripción del proyecto',
-    sendQuoteRequest: 'Enviar solicitud →', configurePrint: 'Configurar impresión →', printTech: 'Tecnología de impresión', filamentMaterial: 'Material de filamento', resinMaterial: 'Material de resina', layerHeight: 'Altura de capa', infillDensity: 'Densidad de relleno', fillStrategy: 'Estrategia de relleno',
+    sendQuoteRequest: 'Enviar solicitud →', configurePrint: 'Configurar impresión →', printTech: 'Tecnología de impresión', filamentMaterial: 'Material de filamento', color: 'Color', resinMaterial: 'Material de resina', layerHeight: 'Altura de capa', infillDensity: 'Densidad de relleno', fillStrategy: 'Estrategia de relleno',
     infill: 'Relleno', wall: 'Pared', solid: 'Sólido', quantity: 'Cantidad', postProcessing: 'Post-procesado', notes: 'Notas especiales (opcional)', totalInclTax: 'Total (con impuesto)', minimumOrder: '* Se aplicó orden mínima de $85.00 MXN', back: '← Regresar', reviewOrder: 'Revisar orden →', orderSummary: 'Resumen de orden', confirmOrder: 'Confirmar orden →',
     successTitle: 'Orden recibida.', successMsg: 'El equipo de Axonas3D revisará tu cotización y se comunicará contigo dentro de <strong>24 horas</strong> para confirmar detalles y pago.', attachTitle: 'Importante: archivo CAD',
     attachText: 'Debería llegar una confirmación a tu correo de Axonas3D.<br><br><strong>Si el archivo CAD no se adjunta por el formulario, haz clic en “Email Axonas3D” y adjunta manualmente tu archivo STL, OBJ, STEP o 3MF.</strong><br>No podemos iniciar tu orden ni finalizar la cotización sin el archivo 3D. Incluye tu Quote ID en el correo.',
@@ -805,7 +805,7 @@ function setLabelTexts() {
   const labels = document.querySelectorAll('label:not(.advanced-switch)');
   const keys = [
     'yourName','emailAddress','phone','fileFormat','projectDesc',
-    'printTech','filamentMaterial','resinMaterial',
+    'printTech','filamentMaterial','color','resinMaterial','color',
     'layerHeight','layerHeight','infillDensity','fillStrategy',
     'quantity','postProcessing','notes',
     'yourName','emailAddress','phone'
